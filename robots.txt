@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://manye31.github.io/micah-nye/sitemap.xml
+Sitemap: https://manye31.github.io/sitemap.xml
