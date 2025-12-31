@@ -1,0 +1,323 @@
+{
+  "work": [
+    {
+      "name": "The AirLab at Carnegie Mellon University",
+      "position": "Graduate Research Student",
+      "url": "https://theairlab.org",
+      "startDate": "2024-08-01",
+      "endDate": "",
+      "summary": "Conducting research on robot learning and autonomous systems under advisors Sebastian Scherer and Wenshan Wang",
+      "highlights": [
+        "Developed predictive dynamics models for off-road driving using robot learning techniques",
+        "Collaborated with Army Research Laboratory on self-supervised autonomy research, leading to successful field-testing and deployment on sponsor robot platforms",
+        "Deployed full autonomy stack on quadruped robot for navigation in unstructured environments, part of DARPA Triage Challenge",
+        "Optimized large data transport by implementing RTI Connext DDS protocol and building specialized Docker infrastructure for reliable, high-throughput communication",
+        "Developed and maintained large ROS2 workspace (39 packages, 24 submodules), introducing better code maintenance and source control practices to the research group"
+      ]
+    },
+    {
+      "name": "The AirLab at Carnegie Mellon University",
+      "position": "Research Assistant",
+      "url": "https://theairlab.org",
+      "startDate": "2022-09-01",
+      "endDate": "2024-08-01",
+      "summary": "Worked on autonomous off-road vehicle systems under advisors Sebastian Scherer and Wenshan Wang",
+      "highlights": [
+        "Worked on a full-scale autonomous ATV with online learning and navigation in rugged, uncertain terrain",
+        "Established effective ways to estimate epistemic model uncertainty of traversability costmap predictions over patches of ground in unknown off-road terrain",
+        "Implemented deep learning models in PyTorch and TensorFlow frameworks for uncertainty estimation",
+        "Designed a computer box for an off-road ATV robot, equipped with vibrational dampening, modularity, and environmental protection"
+      ]
+    },
+    {
+      "name": "ESTAT Actuation",
+      "position": "Lead Software Developer & Mechanical Co-op",
+      "url": "",
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-01",
+      "summary": "Developed device test stands to research electrostatic robotic clutches",
+      "highlights": [
+        "Developed device test stands to research electrostatic robotic clutches, directly enabling company success",
+        "Placed 1st out of 9 startups in Startup Challenge at 2023 International Automate Trade Show",
+        "Developed a low-level motor controller with torque feedback and integrated new encoder, writing in embedded C and streaming measurements to a multithreaded python planner",
+        "Established a robust, generalizable architecture for longevity, linear, and high-torque test stands with hardware",
+        "Overhauled software source control with a focus in validation testing, documentation, and user-friendliness"
+      ]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Indy Autonomous Challenge with MIT-PITT-RW",
+      "location": "Pittsburgh, PA",
+      "position": "Chief Engineer, Localization and Deployment Subteam Lead",
+      "url": "",
+      "startDate": "2022-03-01",
+      "endDate": "2025-05-01",
+      "summary": "Led a 40-member autonomous racing team as Chief Engineer, delivering a full-scale autonomous racecar operating reliably at speeds up to 155 mph in multi-agent competitions",
+      "highlights": [
+        "Led 7-person localization/deployment subteam on fully student-led, uncompensated project",
+        "Implemented IMU-centric SLAM to improve GPS-denied state estimation robustness, while implementing IMU fusion with an EKF to add failsafe dead-reckoning modes for degraded sensing",
+        "Built a unified ground-truth and track-artifact API and integrated it across perception, localization, planning, and control modules to improve system-level efficiency",
+        "Collaborated with researchers from multiple R1 institutions"
+      ]
+    },
+    {
+      "organization": "Carnegie Mellon Robotics Institute Summer Scholar (RISS)",
+      "location": "Pittsburgh, PA",
+      "position": "Summer Scholar",
+      "url": "",
+      "startDate": "2023-06-01",
+      "endDate": "2023-08-01",
+      "summary": "Worked on a collaborative team of quadrotors for creating a filming and reconstruction autonomy platform",
+      "highlights": [
+        "Developed a photorealistic, highly dynamic simulator using IsaacSim for quadrotor aerial simulation",
+        "Implemented a non-linear minimum-snap-based controller for tracking aggressive trajectories",
+        "Developed infrastructure for imperative learning safe-navigation planner to act as local planner for filming drones"
+      ]
+    },
+    {
+      "organization": "United Way Venango County",
+      "location": "",
+      "position": "Robotics Teacher at Summer Camp",
+      "url": "",
+      "startDate": "2024-07-01",
+      "endDate": "2024-08-01",
+      "summary": "Taught robotics to youth at summer camp",
+      "highlights": []
+    },
+    {
+      "organization": "Northside SAFE for the Summer Program",
+      "location": "",
+      "position": "Robotics Teacher",
+      "url": "",
+      "startDate": "2024-06-01",
+      "endDate": "2024-08-01",
+      "summary": "Taught robotics to youth in summer program",
+      "highlights": []
+    }
+  ],
+  "education": [
+    {
+      "institution": "Carnegie Mellosssn University",
+      "location": "Pittsburgh, PA",
+      "url": "https://www.cmu.edu/",
+      "area": "Robotics",
+      "studyType": "M.S.",
+      "startDate": "2024-08-01",
+      "endDate": "2026-05-01",
+      "image": "/assets/img/logo/cmu_logo.png",
+      "score": "4.0",
+      "courses": [
+        "16-831 Intro to Robot Learning",
+        "16-745 Optimal Control and Reinforcement Learning",
+        "16-782 Planning and Decision Making",
+        "16-711 Kinematics, Dynamics, & Controls",
+        "16-720 Computer Vision",
+        "Intro to Machine Learning",
+        "16-811 Mathematic Fundamentals for Robotics"
+      ]
+    },
+    {
+      "institution": "University of Pittsburgh",
+      "location": "Pittsburgh, PA",
+      "url": "https://www.pitt.edu/",
+      "area": "Mechanical Engineering",
+      "studyType": "B.S.",
+      "startDate": "2020-08-01",
+      "endDate": "2024-08-01",
+      "image": "/assets/img/logo/pitt_logo.png",
+      "score": "3.96",
+      "courses": []
+    }
+  ],
+  "awards": [
+    {
+      "title": "CMU Rales Fellow (Inaugural Cohort)",
+      "date": "2024-04-01",
+      "awarder": "Carnegie Mellon University",
+      "url": "",
+      "summary": "$191k fellowship for graduate studies (2024-2026)"
+    },
+    {
+      "title": "NSF Graduate Research Fellowship Honorable Mention",
+      "date": "2024-04-01",
+      "awarder": "National Science Foundation",
+      "url": "",
+      "summary": ""
+    },
+    {
+      "title": "NSF REU Scholar",
+      "date": "2023-08-01",
+      "awarder": "National Science Foundation",
+      "url": "",
+      "summary": ""
+    },
+    {
+      "title": "CMU RISS Scholar",
+      "date": "2023-08-01",
+      "awarder": "Carnegie Mellon University",
+      "url": "",
+      "summary": "$8k scholarship for summer research"
+    },
+    {
+      "title": "Pitt Success Merit Grant",
+      "date": "2020-08-01",
+      "awarder": "University of Pittsburgh",
+      "url": "",
+      "summary": "$8k grant (2020-2024)"
+    },
+    {
+      "title": "Pennsylvania Ready to Succeed Scholarship",
+      "date": "2023-02-01",
+      "awarder": "Pennsylvania Higher Education Assistance Agency",
+      "url": "",
+      "summary": "$6.6k scholarship"
+    }
+  ],
+  "certificates": [],
+  "publications": [
+    {
+      "name": "BETTY Dataset: A Multi-modal Dataset for Full-Stack Autonomy",
+      "publisher": "IEEE International Conference on Robotics and Automation",
+      "releaseDate": "2025-01-01",
+      "url": "",
+      "summary": "Multi-modal dataset for autonomous systems. Authors: M. Nye, A. Raji, A. Saba, E. Erlich, R. Exley, A. Goyal, A. Matros, R. Misra, M. Sivaprakasam, M. Bertogna, D. Ramanan, S. Scherer"
+    },
+    {
+      "name": "TartanDrive 2.0: More Modalities and Better Infrastructure to Further Self-Supervised Learning Research in Off-Road Driving Tasks",
+      "publisher": "IEEE International Conference on Robotics and Automation",
+      "releaseDate": "2024-01-01",
+      "url": "",
+      "summary": "Enhanced dataset infrastructure for off-road autonomy research. Authors: M. Sivaprakasam, P. Maheshwari, M. G. Castro, S. Triest, M. Nye, S. Willits, A. Saba, W. Wang, S. Scherer"
+    },
+    {
+      "name": "A Quantitative Analysis of Undergraduate Researchers' Intent to Apply to Graduate School",
+      "publisher": "IEEE World Engineering Education Conference",
+      "releaseDate": "2026-01-01",
+      "url": "",
+      "summary": "Analysis of factors influencing undergraduate researchers' graduate school decisions. Authors: R. Burcin, M. Nye, I. Adu, V. Mruthyunjaya, J. M. Dolan"
+    },
+    {
+      "name": "Fast and Modular Autonomy Software for Autonomous Racing Vehicles",
+      "publisher": "Journal of Field Robotics (IEEE Transactions on Field Robotics)",
+      "releaseDate": "2024-01-01",
+      "url": "",
+      "summary": "Software architecture for high-speed autonomous racing. Authors: A. Saba, A. Adetunji, A. Johnson, A. Kothari, M. Sivaprakasam, J. Spisak, P. Bharatia, A. Chauhan, B. D. Jr., N. Gasparro, C. King, R. Larkin, B. Mao, M. Nye, et al."
+    },
+    {
+      "name": "Simulation and Control for Learning Collision-free Navigation for Aerial Vehicles",
+      "publisher": "Robotics Institute of Summer Scholars Working Papers Journal",
+      "releaseDate": "2023-01-01",
+      "url": "",
+      "summary": "Development of simulation and control methods for safe aerial navigation. Authors: M. Nye, M. Corah, and S. Scherer"
+    },
+    {
+      "name": "TartanDrive 1.5: Improving Large Multimodal Robotics Dataset Collection and Distribution",
+      "publisher": "IEEE ICRA Workshop on Pretraining for Robotics",
+      "releaseDate": "2023-01-01",
+      "url": "",
+      "summary": "Improvements to robotics dataset infrastructure. Authors: M. Sivaprakasam, S. Triest, M. G. Castro, M. Nye, M. Maulimov, C. Ho, P. Maheshwari, W. Wang, and S. Scherer"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Robotics",
+      "level": "Master",
+      "icon": "fa-solid fa-robot",
+      "keywords": [
+        "Robot Learning",
+        "Optimal Control",
+        "Motion Planning",
+        "Field Testing",
+        "Systems Integration",
+        "Dataset Balancing"
+      ]
+    },
+    {
+      "name": "Programming",
+      "level": "Master",
+      "icon": "fa-solid fa-code",
+      "keywords": [
+        "Python",
+        "C++",
+        "Embedded C",
+        "MATLAB",
+        "HTML",
+        "Javascript"
+      ]
+    },
+    {
+      "name": "Frameworks",
+      "level": "Master",
+      "icon": "fa-solid fa-gears",
+      "keywords": [
+        "PyTorch",
+        "ROS2/ROS",
+        "Docker",
+        "DDS",
+        "TensorFlow",
+        "OpenCV",
+        "GTSAM"
+      ]
+    },
+    {
+      "name": "Fabrication",
+      "level": "Intermediate",
+      "icon": "fa-solid fa-hammer",
+      "keywords": [
+        "3D Printing",
+        "Soldering",
+        "CNC Laser Cutting",
+        "Waterjet Cutting",
+        "Lathe"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker",
+      "icon": ""
+    }
+  ],
+  "interests": [
+    {
+      "name": "Robotics",
+      "icon": "fa-solid fa-robot",
+      "keywords": [
+        "Off-Road Autonomy",
+        "Robot Learning",
+        "Field Robotics",
+        "Autonomous Racing",
+        "Aerial Systems"
+      ]
+    }
+  ],
+  "references": [],
+  "projects": [
+    {
+      "name": "Organizer for RSS 2025 Workshop on Resilient Off-road Autonomous Robotics",
+      "summary": "Organizing workshop on resilient off-road autonomous systems for Robotics: Science and Systems 2025",
+      "highlights": [],
+      "startDate": "2025-06-01",
+      "endDate": "2025-06-01",
+      "url": ""
+    },
+    {
+      "name": "Principal Investigator for Study on REU Impact",
+      "summary": "Leading research study examining the impact of Research Experience for Undergraduates programs",
+      "highlights": [],
+      "startDate": "2025-08-01",
+      "endDate": "",
+      "url": ""
+    },
+    {
+      "name": "Researcher for Robotics Institute Demographics and Spatial Equity",
+      "summary": "Conducting research on demographics and spatial equity within the Robotics Institute",
+      "highlights": [],
+      "startDate": "2024-05-01",
+      "endDate": "2025-01-01",
+      "url": ""
+    }
+  ]
+}

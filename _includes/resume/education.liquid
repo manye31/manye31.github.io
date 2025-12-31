@@ -31,6 +31,13 @@
                   </td>
                 </tr>
               {% endif %}
+              {% if content.image and content.image != '' %}
+                <tr>
+                  <td>
+                    <img src="{{ content.image | relative_url }}" alt="{{ content.institution }}" class="cv-entry-image">
+                  </td>
+                </tr>
+              {% endif %}
             </tbody>
           </table>
         </div>

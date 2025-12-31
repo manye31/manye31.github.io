@@ -2,6 +2,16 @@
  * CV shared styles
  *****************************/
 
+/* Resume entry image (logo / photo) */
+.cv-entry-image {
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: contain;
+  margin: 0.5rem auto 0.25rem auto;
+  display: block;
+}
+
+
 div.container-link-button {
   margin-right: 0.5rem;
 }
