@@ -26,6 +26,20 @@ layout: default
       {% endif %}
     </header>
 
+      {% if page.cv_pdf and page.cv_pdf_preview %}
+        {% assign pdf_url = page.cv_pdf %}
+        {% if pdf_url contains '://' %}
+          {% assign pdf_src = pdf_url %}
+        {% else %}
+          {% assign pdf_src = pdf_url | prepend: 'assets/pdf/' | relative_url %}
+        {% endif %}
+        <div class="pdf-preview mt-3 mb-3">
+          <object data="{{ pdf_src }}" type="application/pdf" width="100%" height="700">
+            <p>PDF preview not available — <a href="{{ pdf_src }}" target="_blank" rel="noopener noreferrer">open the CV PDF</a>.</p>
+          </object>
+        </div>
+      {% endif %}
+
     <article>
       <div class="cv">
         {% for entry in site.data.cv %}
@@ -76,6 +90,20 @@ layout: default
         <p class="post-description">{{ page.description }}</p>
       {% endif %}
     </header>
+
+      {% if page.cv_pdf and page.cv_pdf_preview %}
+        {% assign pdf_url = page.cv_pdf %}
+        {% if pdf_url contains '://' %}
+          {% assign pdf_src = pdf_url %}
+        {% else %}
+          {% assign pdf_src = pdf_url | prepend: 'assets/pdf/' | relative_url %}
+        {% endif %}
+        <div class="pdf-preview mt-3 mb-3">
+          <object data="{{ pdf_src }}" type="application/pdf" width="100%" height="700">
+            <p>PDF preview not available — <a href="{{ pdf_src }}" target="_blank" rel="noopener noreferrer">open the CV PDF</a>.</p>
+          </object>
+        </div>
+      {% endif %}
 
     <article>
       <div class="cv">
