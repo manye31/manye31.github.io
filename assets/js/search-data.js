@@ -4,20 +4,27 @@ const ninja = document.querySelector('ninja-keys');
 // add the home and posts menu items
 ninja.data = [{
     id: "nav-about",
-    title: "about",
+    title: "About",
     section: "Navigation",
     handler: () => {
       window.location.href = "/";
     },
   },{id: "nav-publications",
-          title: "publications",
+          title: "Publications",
           description: "publications by categories in reversed chronological order.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/publications/";
           },
+        },{id: "nav-community",
+          title: "Community",
+          description: "I never stop giving back to the communities that got me to where I am today.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/community/";
+          },
         },{id: "nav-cv",
-          title: "cv",
+          title: "CV",
           description: "",
           section: "Navigation",
           handler: () => {
@@ -391,16 +398,63 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
+            },},{id: "community-why-reus",
+          title: 'Why REUs?',
+          description: "Supporting the Pursuit of Graduate School",
+          section: "Community",handler: () => {
+              window.location.href = "/community/1_reu_grad/";
+            },},{id: "community-demographic-equity",
+          title: 'Demographic Equity',
+          description: "",
+          section: "Community",handler: () => {
+              window.location.href = "/community/2_demographic_equity/";
+            },},{id: "community-robotics-summer-camp",
+          title: 'Robotics Summer Camp',
+          description: "United Way Venango County",
+          section: "Community",handler: () => {
+              window.location.href = "/community/3_uwvc_summer_camp/";
+            },},{id: "community-robotics-summer-course",
+          title: 'Robotics Summer Course',
+          description: "Northside Partnership Project",
+          section: "Community",handler: () => {
+              window.location.href = "/community/4_safe_summer_course/";
+            },},{id: "community-build-a-bot",
+          title: 'Build a Bot',
+          description: "@ Pittsburgh Hill District Community Engagement Center",
+          section: "Community",handler: () => {
+              window.location.href = "/community/5_hd_cec/";
+            },},{id: "community-robolaunch",
+          title: 'Robolaunch',
+          description: "Carnegie Mellon University RISS Program",
+          section: "Community",handler: () => {
+              window.location.href = "/community/6_robolaunch/";
+            },},{id: "community-project-7",
+          title: 'project 7',
+          description: "with background image",
+          section: "Community",handler: () => {
+              window.location.href = "/community/7_project/";
             },},{id: "news-i-received-the-inaugural-cmu-rales-fellowship",
-          title: 'I received the inaugural CMU Rales Fellowship!',
+          title: 'I received the inaugural CMU Rales Fellowship.',
           description: "",
           section: "News",},{id: "news-i-started-my-m-s-robotics-at-cmu",
-          title: 'I started my M.S. Robotics at CMU!',
+          title: 'I started my M.S. Robotics at CMU.',
           description: "",
           section: "News",},{id: "news-i-presented-the-betty-dataset-at-icra-2025",
-          title: 'I presented the BETTY Dataset at ICRA 2025!',
+          title: 'I presented the BETTY Dataset at ICRA 2025.',
           description: "",
-          section: "News",},{id: "projects-project-1",
+          section: "News",},{id: "professional_service-organizer-for-undergraduate-intro-to-ros-robotics-workshop",
+          title: 'Organizer for undergraduate Intro to ROS Robotics Workshop',
+          description: "",
+          section: "Professional_service",},{id: "professional_service-workshop-co-organizer-for-rss-2025-workshop-on-resilient-off-road-autonomous-robotics",
+          title: 'Workshop Co-Organizer for RSS 2025 Workshop on Resilient Off-road Autonomous Robotics',
+          description: "",
+          section: "Professional_service",},{id: "professional_service-peer-reviewer-for-ieee-icra-2025",
+          title: 'Peer Reviewer for IEEE ICRA 2025',
+          description: "",
+          section: "Professional_service",},{id: "professional_service-peer-reviewer-for-ieee-ra-l-2025",
+          title: 'Peer Reviewer for IEEE RA-L 2025',
+          description: "",
+          section: "Professional_service",},{id: "projects-project-1",
           title: 'project 1',
           description: "with background image",
           section: "Projects",handler: () => {
