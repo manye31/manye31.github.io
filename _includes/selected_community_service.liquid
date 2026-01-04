@@ -1,9 +1,9 @@
 <div class="community">
   {% assign all_community = site.community | where_exp: "page", "page.path contains 'community'" %}
-  {% assign selected_service = all_community | where: "selected", true %}
+  {% assign selected_community_service = all_community | where: "selected", true %}
   
-  <div class="row">
-    {% for project in selected_service %}
+  <div class="row mb-4">
+    {% for project in selected_community_service %}
       <div class="col-md-6 mt-3">
         <div class="card hoverable">
           <a href="{{ project.url | relative_url }}">

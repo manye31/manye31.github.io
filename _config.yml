@@ -153,6 +153,10 @@ collections:
     output: true
   community:
     output: true
+  professional_service:
+    defaults:
+      layout: post
+    output: true
 
 # -----------------------------------------------------------------------------
 # Jekyll settings

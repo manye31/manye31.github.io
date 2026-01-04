@@ -4,7 +4,7 @@ title: Robotics Summer Camp
 description: United Way Venango County
 img: assets/img/community/uwvc/general_group.jpeg
 importance: 3
-category: work
+category: community
 related_publications: false
 selected: true
 images:

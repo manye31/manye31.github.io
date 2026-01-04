@@ -5,7 +5,7 @@ permalink: /community/
 description: I never stop giving back to the communities that got me to where I am today.
 nav: true
 nav_order: 3
-display_categories: [work, fun]
+display_categories: [community, research]
 horizontal: false
 ---
 
