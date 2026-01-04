@@ -49,14 +49,17 @@ images:
 </swiper-container>
 
 ## My goal
+
 These middle school students from this area were not very exposed to financial and educational opportunities to encourage their career choices. For example, the high school they were entering offered no useful AP courses. Their primary way to get information on career opportunities was through their teachers, making them the ultimate gatekeepers (for good or for worse).
 
 I wanted to open some more doors of opportunity for the students by:
+
 1. Exposing them to the field of robotics
 2. Emphasizing how accessible robotics -- Pittsburgh (1.5h away) is a major hub with amazing educational and occupational opporunity for all types of roboticists.
 3. Highlighting financial opportunities to get into robotics (Cheap DIY robots, undergraduate scholarships, undergraduate research experiences, etc.)
 
 ## Curriculum
+
 My curriculum blended the summer program's theme of careers in agriculture, transportation, and hospitality with the application to robotics. These were the regions aforementioned three most important sectors, and I wanted to show how robotics could apply to this aspect of their daily lives and interests.
 
 A key focus of my course was to highlight how robots help humans and are not replacing them.
@@ -77,6 +80,7 @@ A key focus of my course was to highlight how robots help humans and are not rep
 </div>
 
 ### Hands-on Activities
+
 Hands-on experiences are foundational to the youth's learning and excitement. I made sure each week introduced a new type of robot for the kids to build, program, and work with. I also related each robot to the theme of the lesson, e.g. agriculture, and engaged the students in questions about how this robot could succeed or fail in that industry.
 
 <div class="row align-items-center mt-4 robot-section slide-right">
@@ -163,6 +167,7 @@ Hands-on experiences are foundational to the youth's learning and excitement. I 
 </script>
 
 ## Gallery
+
 Take a look at more photos from the program.
 
 <swiper-container slides-per-view="4.2" space-between="16" centered-slides="true" keyboard="true" navigation="true" loop="true" autoplay-delay="3500" autoplay-disable-on-interaction="false">
