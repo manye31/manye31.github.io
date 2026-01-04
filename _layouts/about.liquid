@@ -64,6 +64,14 @@ layout: default
       {% include selected_papers.liquid %}
     {% endif %}
 
+    <!-- Selected service -->
+    {% if page.selected_service %}
+      <h2>
+        <a href="{{ '/community/' | relative_url }}" style="color: inherit">Selected Service</a>
+      </h2>
+      {% include selected_service.liquid %}
+    {% endif %}
+
     <!-- Social -->
     {% if page.social %}
       <div class="social">

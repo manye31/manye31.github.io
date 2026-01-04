@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-I started my M.S. Robotics at CMU!
+I started my M.S. Robotics at CMU.

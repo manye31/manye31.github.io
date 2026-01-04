@@ -6,6 +6,7 @@ img: assets/img/community/uwvc/general_group.jpeg
 importance: 3
 category: work
 related_publications: false
+selected: true
 images:
   slider: true
 ---
