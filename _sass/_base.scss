@@ -1163,6 +1163,22 @@ swiper-container {
   --swiper-pagination-bullet-inactive-color: var(--global-text-color);
 }
 
+// Clamp image to max height basically
+// /* Cap the swiper height */
+// .uwvc-swiper {
+//   max-height: clamp(260px, 35vw, 420px);
+//   overflow: hidden; /* critical */
+// }
+
+// /* Ensure images respect the cap */
+// .uwvc-swiper swiper-slide img {
+//   max-height: 100%;
+//   width: auto;
+//   object-fit: contain;
+//   display: block;
+//   margin-inline: auto;
+// }
+
 .ps-root {
   .ps-algorithm {
     margin: 0.8em 0;
