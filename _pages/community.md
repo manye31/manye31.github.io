@@ -1,6 +1,6 @@
 ---
 layout: page
-title: community
+title: Community
 permalink: /community/
 description: I never stop giving back to the communities that got me to where I am today.
 nav: true

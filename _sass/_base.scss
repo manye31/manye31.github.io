@@ -1163,6 +1163,35 @@ swiper-container {
   --swiper-pagination-bullet-inactive-color: var(--global-text-color);
 }
 
+// Community
+// Scroll animation styles
+.robot-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.slide-left {
+    transform: translateX(-30px);
+
+    &.visible {
+      transform: translateX(0);
+    }
+  }
+
+  &.slide-right {
+    transform: translateX(30px);
+
+    &.visible {
+      transform: translateX(0);
+    }
+  }
+}
+
 // Clamp image to max height basically
 // /* Cap the swiper height */
 // .uwvc-swiper {

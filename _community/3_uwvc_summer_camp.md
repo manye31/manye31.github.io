@@ -78,7 +78,7 @@ A key focus of my course was to highlight how robots help humans and are not rep
 ### Hands-on Activities
 Hands-on experiences are foundational to the youth's learning and excitement. I made sure each week introduced a new type of robot for the kids to build, program, and work with. I also related each robot to the theme of the lesson, e.g. agriculture, and engaged the students in questions about how this robot could succeed or fail in that industry.
 
-<div class="row align-items-center mt-4">
+<div class="row align-items-center mt-4 robot-section slide-right">
   <!-- Text -->
   <div class="col-md-7">
     <h4>Bristle Bot (Week 1)</h4>
@@ -99,7 +99,7 @@ Hands-on experiences are foundational to the youth's learning and excitement. I 
   </div>
 </div>
 
-<div class="row align-items-center mt-5">
+<div class="row align-items-center mt-5 robot-section slide-left">
   <!-- Image -->
   <div class="col-md-5 order-1 order-md-1">
     {% include figure.liquid
@@ -121,7 +121,7 @@ Hands-on experiences are foundational to the youth's learning and excitement. I 
   </div>
 </div>
 
-<div class="row align-items-center mt-5">
+<div class="row align-items-center mt-5 robot-section slide-right">
   <!-- Text -->
   <div class="col-md-7">
     <h4>Kuri Bot (Week 3)</h4>
@@ -139,6 +139,27 @@ Hands-on experiences are foundational to the youth's learning and excitement. I 
     %}
   </div>
 </div>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all robot sections
+  document.querySelectorAll('.robot-section').forEach(section => {
+    observer.observe(section);
+  });
+</script>
 
 ## Gallery
 Take a look at more photos from the program.
