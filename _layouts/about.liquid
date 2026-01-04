@@ -43,7 +43,7 @@ layout: default
     <!-- News -->
     {% if page.announcements and page.announcements.enabled %}
       <h2>
-        <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
+        <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
       </h2>
       {% include news.liquid limit=true %}
     {% endif %}
@@ -51,7 +51,7 @@ layout: default
     <!-- Latest posts -->
     {% if page.latest_posts and page.latest_posts.enabled %}
       <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
+        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">Latest Posts</a>
       </h2>
       {% include latest_posts.liquid %}
     {% endif %}
@@ -59,9 +59,25 @@ layout: default
     <!-- Selected papers -->
     {% if page.selected_papers %}
       <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
+        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Selected Publications</a>
       </h2>
       {% include selected_papers.liquid %}
+    {% endif %}
+
+    <!-- Selected community service -->
+    {% if page.selected_community_service %}
+      <h2>
+        <a href="{{ '/community/' | relative_url }}" style="color: inherit">Selected Community Engagement</a>
+      </h2>
+      {% include selected_community_service.liquid %}
+    {% endif %}
+
+    <!-- Professional service -->
+    {% if page.professional_service and page.professional_service.enabled %}
+      <h2>
+        <a href="{{ '/professional_service/' | relative_url }}" style="color: inherit">Professional Service</a>
+      </h2>
+      {% include professional_service.liquid limit=true %}
     {% endif %}
 
     <!-- Social -->

@@ -224,53 +224,25 @@
       "name": "Robotics",
       "level": "Master",
       "icon": "fa-solid fa-robot",
-      "keywords": [
-        "Robot Learning",
-        "Optimal Control",
-        "Motion Planning",
-        "Field Testing",
-        "Systems Integration",
-        "Dataset Balancing"
-      ]
+      "keywords": ["Robot Learning", "Optimal Control", "Motion Planning", "Field Testing", "Systems Integration", "Dataset Balancing"]
     },
     {
       "name": "Programming",
       "level": "Master",
       "icon": "fa-solid fa-code",
-      "keywords": [
-        "Python",
-        "C++",
-        "Embedded C",
-        "MATLAB",
-        "HTML",
-        "Javascript"
-      ]
+      "keywords": ["Python", "C++", "Embedded C", "MATLAB", "HTML", "Javascript"]
     },
     {
       "name": "Frameworks",
       "level": "Master",
       "icon": "fa-solid fa-gears",
-      "keywords": [
-        "PyTorch",
-        "ROS2/ROS",
-        "Docker",
-        "DDS",
-        "TensorFlow",
-        "OpenCV",
-        "GTSAM"
-      ]
+      "keywords": ["PyTorch", "ROS2/ROS", "Docker", "DDS", "TensorFlow", "OpenCV", "GTSAM"]
     },
     {
       "name": "Fabrication",
       "level": "Intermediate",
       "icon": "fa-solid fa-hammer",
-      "keywords": [
-        "3D Printing",
-        "Soldering",
-        "CNC Laser Cutting",
-        "Waterjet Cutting",
-        "Lathe"
-      ]
+      "keywords": ["3D Printing", "Soldering", "CNC Laser Cutting", "Waterjet Cutting", "Lathe"]
     }
   ],
   "languages": [
@@ -284,13 +256,7 @@
     {
       "name": "Robotics",
       "icon": "fa-solid fa-robot",
-      "keywords": [
-        "Off-Road Autonomy",
-        "Robot Learning",
-        "Field Robotics",
-        "Autonomous Racing",
-        "Aerial Systems"
-      ]
+      "keywords": ["Off-Road Autonomy", "Robot Learning", "Field Robotics", "Autonomous Racing", "Aerial Systems"]
     }
   ],
   "references": [],

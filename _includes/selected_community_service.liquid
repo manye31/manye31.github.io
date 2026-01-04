@@ -1,0 +1,29 @@
+<div class="community">
+  {% assign all_community = site.community | where_exp: 'page', "page.path contains 'community'" %}
+  {% assign selected_community_service = all_community | where: 'selected', true %}
+
+  <div class="row mb-4">
+    {% for project in selected_community_service %}
+      <div class="col-md-6 mt-3">
+        <div class="card hoverable">
+          <a href="{{ project.url | relative_url }}">
+            {% if project.img %}
+              <div class="card-img-container" style="height: 150px; overflow: hidden;">
+                <img
+                  src="{{ project.img | relative_url }}"
+                  class="card-img-top"
+                  alt="{{ project.title }}"
+                  style="object-fit: cover; height: 100%; width: 100%;"
+                >
+              </div>
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ project.title }}</h5>
+              <p class="card-text">{{ project.description }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
