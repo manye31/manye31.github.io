@@ -195,69 +195,108 @@
     <div class="links">
       {% if entry.award %}
         <a class="award btn btn-sm z-depth-0" role="button">
-          {% if site.enable_publication_icons %}<i class="fas fa-trophy"></i> {% endif %}{%- if entry.award_name %}{{ entry.award_name }}{% else %}Awarded{% endif -%}
+          {% if site.enable_publication_icons %}<i class="fas fa-trophy"></i> {% endif %}
+          {%- if entry.award_name %}{{ entry.award_name }}{% else %}Awarded{% endif -%}
         </a>
       {% endif %}
       {% if entry.abstract %}
-        <a class="abstract btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-align-left"></i> {% endif %}Abs</a>
+        <a class="abstract btn btn-sm z-depth-0" role="button">
+          {%- if site.enable_publication_icons %}<i class="fas fa-align-left"></i> {% endif %}Abs</a
+        >
       {% endif %}
       {% if entry.doi %}
-        <a href="https://doi.org/{{ entry.doi }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="ai ai-doi"></i> {% endif %}DOI</a>
+        <a href="https://doi.org/{{ entry.doi }}" class="btn btn-sm z-depth-0" role="button">
+          {%- if site.enable_publication_icons %}<i class="ai ai-doi"></i> {% endif %}DOI</a
+        >
       {% endif %}
       {% if entry.arxiv %}
-        <a href="http://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="ai ai-arxiv"></i> {% endif %}arXiv</a>
+        <a href="http://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button">
+          {%- if site.enable_publication_icons %}<i class="ai ai-arxiv"></i> {% endif %}arXiv</a
+        >
       {% endif %}
       {% if entry.bibtex_show %}
-        <a class="bibtex btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-quote-right"></i> {% endif %}Bib</a>
+        <a class="bibtex btn btn-sm z-depth-0" role="button">
+          {%- if site.enable_publication_icons %}<i class="fas fa-quote-right"></i> {% endif %}Bib</a
+        >
       {% endif %}
       {% if entry.html %}
         {% if entry.html contains '://' %}
-          <a href="{{ entry.html }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-code"></i> {% endif %}HTML</a>
+          <a href="{{ entry.html }}" class="btn btn-sm z-depth-0" role="button">
+            {%- if site.enable_publication_icons %}<i class="fas fa-code"></i> {% endif %}HTML</a
+          >
         {% else %}
-          <a href="{{ entry.html | prepend: '/assets/html/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-code"></i> {% endif %}HTML</a>
+          <a href="{{ entry.html | prepend: '/assets/html/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">
+            {%- if site.enable_publication_icons %}<i class="fas fa-code"></i> {% endif %}HTML</a
+          >
         {% endif %}
       {% endif %}
       {% if entry.pdf %}
         {% if entry.pdf contains '://' %}
-          <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-file-pdf"></i> {% endif %}PDF</a>
+          <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button">
+            {%- if site.enable_publication_icons %}<i class="fas fa-file-pdf"></i> {% endif %}PDF</a
+          >
         {% else %}
-          <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-file-pdf"></i> {% endif %}PDF</a>
+          <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">
+            {%- if site.enable_publication_icons %}<i class="fas fa-file-pdf"></i> {% endif %}PDF</a
+          >
         {% endif %}
       {% endif %}
       {% if entry.supp %}
         {% if entry.supp contains '://' %}
-          <a href="{{ entry.supp }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-paperclip"></i> {% endif %}Supp</a>
+          <a href="{{ entry.supp }}" class="btn btn-sm z-depth-0" role="button">
+            {%- if site.enable_publication_icons %}<i class="fas fa-paperclip"></i> {% endif %}Supp</a
+          >
         {% else %}
-          <a href="{{ entry.supp | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-paperclip"></i> {% endif %}Supp</a>
+          <a href="{{ entry.supp | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">
+            {%- if site.enable_publication_icons %}<i class="fas fa-paperclip"></i> {% endif %}Supp</a
+          >
         {% endif %}
       {% endif %}
       {% if entry.video and site.enable_video_embedding %}
-        <a class="abstract btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-video"></i> {% endif %}Video</a>
+        <a class="abstract btn btn-sm z-depth-0" role="button">
+          {%- if site.enable_publication_icons %}<i class="fas fa-video"></i> {% endif %}Video</a
+        >
       {% elsif entry.video %}
-        <a href="{{ entry.video }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-video"></i> {% endif %}Video</a>
+        <a href="{{ entry.video }}" class="btn btn-sm z-depth-0" role="button">
+          {%- if site.enable_publication_icons %}<i class="fas fa-video"></i> {% endif %}Video</a
+        >
       {% endif %}
       {% if entry.blog %}
-        <a href="{{ entry.blog }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-blog"></i> {% endif %}Blog</a>
+        <a href="{{ entry.blog }}" class="btn btn-sm z-depth-0" role="button">
+          {%- if site.enable_publication_icons %}<i class="fas fa-blog"></i> {% endif %}Blog</a
+        >
       {% endif %}
       {% if entry.code %}
-        <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fab fa-github"></i> {% endif %}Code</a>
+        <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button">
+          {%- if site.enable_publication_icons %}<i class="fab fa-github"></i> {% endif %}Code</a
+        >
       {% endif %}
       {% if entry.poster %}
         {% if entry.poster contains '://' %}
-          <a href="{{ entry.poster }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-image"></i> {% endif %}Poster</a>
+          <a href="{{ entry.poster }}" class="btn btn-sm z-depth-0" role="button">
+            {%- if site.enable_publication_icons %}<i class="fas fa-image"></i> {% endif %}Poster</a
+          >
         {% else %}
-          <a href="{{ entry.poster | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-image"></i> {% endif %}Poster</a>
+          <a href="{{ entry.poster | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">
+            {%- if site.enable_publication_icons %}<i class="fas fa-image"></i> {% endif %}Poster</a
+          >
         {% endif %}
       {% endif %}
       {% if entry.slides %}
         {% if entry.slides contains '://' %}
-          <a href="{{ entry.slides }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-file-powerpoint"></i> {% endif %}Slides</a>
+          <a href="{{ entry.slides }}" class="btn btn-sm z-depth-0" role="button">
+            {%- if site.enable_publication_icons %}<i class="fas fa-file-powerpoint"></i> {% endif %}Slides</a
+          >
         {% else %}
-          <a href="{{ entry.slides | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-file-powerpoint"></i> {% endif %}Slides</a>
+          <a href="{{ entry.slides | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">
+            {%- if site.enable_publication_icons %}<i class="fas fa-file-powerpoint"></i> {% endif %}Slides</a
+          >
         {% endif %}
       {% endif %}
       {% if entry.website %}
-        <a href="{{ entry.website }}" class="btn btn-sm z-depth-0" role="button">{% if site.enable_publication_icons %}<i class="fas fa-globe"></i> {% endif %}Website</a>
+        <a href="{{ entry.website }}" class="btn btn-sm z-depth-0" role="button">
+          {%- if site.enable_publication_icons %}<i class="fas fa-globe"></i> {% endif %}Website</a
+        >
       {% endif %}
     </div>
     {% if site.enable_publication_badges %}
