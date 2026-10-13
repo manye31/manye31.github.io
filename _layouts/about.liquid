@@ -23,47 +23,8 @@ layout: default
             random order with no repeats until all have been shown. The page always opens on the first photo (alphabetically),
             then cross-fades to the next one every 5 seconds and on click.
           {% endcomment %}
-          {% assign rotation_dir = page.profile.image_folder | prepend: '/assets/img/' | append: '/' %}
-          {% assign rotation_exts = '.jpg,.jpeg,.png,.gif,.webp' | split: ',' %}
-          {% assign rotation_images = '' | split: '' %}
-          {% assign rotation_resized = '' | split: '' %}
-          {% for file in site.static_files %}
-            {% assign file_ext = file.extname | downcase %}
-            {% if file.path contains rotation_dir and rotation_exts contains file_ext %}
-              {% comment %} Skip the -480/-800/-1400 copies the imagemagick plugin makes {% endcomment %}
-              {% assign is_resized_copy = false %}
-              {% for width in site.imagemagick.widths %}
-                {% assign width_suffix = width | prepend: '-' %}
-                {% if file.basename contains width_suffix %}
-                  {% assign suffix_size = width_suffix | size %}
-                  {% assign suffix_start = file.basename | size | minus: suffix_size %}
-                  {% assign file_suffix = file.basename | slice: suffix_start, suffix_size %}
-                  {% if file_suffix == width_suffix %}
-                    {% assign is_resized_copy = true %}
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
-              {% if is_resized_copy %}
-                {% assign rotation_resized = rotation_resized | push: file.path %}
-              {% else %}
-                {% assign rotation_images = rotation_images | push: file.path %}
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-          {% assign rotation_images = rotation_images | sort %}
-          {% comment %} Show the 800px copy the imagemagick plugin makes (much smaller than phone originals) when it exists {% endcomment %}
-          {% assign rotation_display = '' | split: '' %}
-          {% for path in rotation_images %}
-            {% assign path_parts = path | split: '.' %}
-            {% assign path_ext = path_parts | last | prepend: '.' %}
-            {% assign path_stem_size = path | size | minus: path_ext.size %}
-            {% assign resized_path = path | slice: 0, path_stem_size | append: '-800.webp' %}
-            {% if rotation_resized contains resized_path %}
-              {% assign rotation_display = rotation_display | push: resized_path %}
-            {% else %}
-              {% assign rotation_display = rotation_display | push: path %}
-            {% endif %}
-          {% endfor %}
+          {% include folder_images.liquid folder=page.profile.image_folder %}
+          {% assign rotation_display = folder_images %}
           {% if page.profile.image_circular %}
             {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
           {% else %}
@@ -78,12 +39,17 @@ layout: default
               height="480"
             >
           </figure>
+          <div class="secret-popup" role="status" hidden>
+            <span class="secret-popup-text">You found a secret!</span>
+            <a href="{{ '/hobbies/' | relative_url }}">Learn more about me →</a>
+            <button type="button" class="secret-popup-close" aria-label="Close">×</button>
+          </div>
           <script>
             (function () {
               var images = {{ rotation_display | jsonify }}.map(function (path) {
                 return '{{ site.baseurl }}' + encodeURI(path);
               });
-              var figure = document.currentScript.previousElementSibling;
+              var figure = document.currentScript.parentElement.querySelector('.profile-rotation');
               var INTERVAL = 5000; // ms between automatic switches
               var FADE = 900; // ms, keep in sync with the CSS transition
               if (images.length < 2) return;
@@ -177,9 +143,25 @@ layout: default
                 }, INTERVAL);
               }
 
+              // Secret: the 3rd click on the photo reveals a link to the hidden hobbies page
+              var clicks = 0;
+              var popup = figure.parentElement.querySelector('.secret-popup');
+              popup.querySelector('.secret-popup-close').addEventListener('click', function () {
+                popup.classList.remove('is-open');
+                setTimeout(function () {
+                  popup.hidden = true;
+                }, 250);
+              });
+
               figure.addEventListener('click', function () {
                 crossfade();
                 restartTimer();
+                clicks++;
+                if (clicks === 3) {
+                  popup.hidden = false;
+                  void popup.offsetWidth;
+                  popup.classList.add('is-open');
+                }
               });
               preloadUpcoming();
               restartTimer();
@@ -266,6 +248,25 @@ layout: default
         <div class="contact-note">{{ site.contact_note }}</div>
       </div>
     {% endif %}
+
+    <!-- Secret: appears once a visitor scrolls all the way to the bottom -->
+    <p class="secret-bottom" aria-hidden="true">
+      👀 You made it all the way down. <a href="{{ '/hobbies/' | relative_url }}" tabindex="-1">Here's a little more about me →</a>
+    </p>
+    <script>
+      (function () {
+        var note = document.currentScript.previousElementSibling;
+        function check() {
+          var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8;
+          if (!atBottom) return;
+          note.classList.add('is-revealed');
+          note.removeAttribute('aria-hidden');
+          note.querySelector('a').removeAttribute('tabindex');
+          window.removeEventListener('scroll', check);
+        }
+        window.addEventListener('scroll', check, { passive: true });
+      })();
+    </script>
 
     {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}
       {% include newsletter.liquid center=true %}

@@ -1,0 +1,55 @@
+name: Update hobby data
+
+# Once a day: refreshes my Spotify top artists (_data/spotify.json) and Letterboxd diary (_data/letterboxd.json),
+# then redeploys the site if either changed.
+# Spotify needs repository secrets SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN (see bin/spotify_auth.py).
+
+on:
+  schedule:
+    - cron: "17 9 * * *" # daily, 09:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Each source is independent: if one fails, the other still updates
+      - name: Fetch Spotify top artists
+        continue-on-error: true
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: python3 bin/spotify_fetch.py
+
+      - name: Fetch Letterboxd diary
+        continue-on-error: true
+        run: python3 bin/letterboxd_fetch.py
+
+      - name: Commit if anything changed
+        id: commit
+        run: |
+          if git diff --quiet -- _data/spotify.json _data/letterboxd.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add _data/spotify.json _data/letterboxd.json
+            git commit -m "Update hobby data"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Pushes made by this workflow don't trigger other workflows, so start the deploy explicitly
+      - name: Redeploy site
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref "${{ github.ref_name }}"

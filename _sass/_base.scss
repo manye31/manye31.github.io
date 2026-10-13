@@ -1742,3 +1742,1194 @@ h2.section-heading {
     }
   }
 }
+
+// Secret link to /hobbies/: pop-up under the profile photo (3rd click) and a line at the very bottom of the about page
+.secret-popup {
+  position: relative;
+  margin-top: 0.75rem;
+  padding: 0.6rem 2rem 0.6rem 0.85rem;
+  border: 1px solid var(--global-theme-color);
+  border-radius: 0.5rem;
+  background-color: var(--global-bg-color);
+  box-shadow: 0 8px 22px -12px rgba(0, 0, 0, 0.45);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+
+  // little arrow pointing up at the photo
+  &::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+    background-color: var(--global-bg-color);
+    border-left: 1px solid var(--global-theme-color);
+    border-top: 1px solid var(--global-theme-color);
+    transform: rotate(45deg);
+  }
+
+  &.is-open {
+    opacity: 1;
+    transform: none;
+  }
+
+  .secret-popup-text {
+    display: block;
+    font-weight: 600;
+  }
+
+  .secret-popup-close {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.4rem;
+    border: 0;
+    background: none;
+    color: var(--global-text-color-light);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+}
+
+.secret-bottom {
+  text-align: center;
+  margin-top: 1.5rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+
+  &.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secret-popup,
+  .secret-bottom {
+    transition: none;
+  }
+}
+
+// Inline-SVG social icons (Discogs, Letterboxd) styled like the Font Awesome ones
+.contact-icons a svg.social-svg {
+  width: 3.4rem;
+  height: 3.4rem;
+  color: var(--global-text-color);
+  vertical-align: -0.1em;
+  transition: color 0.2s ease-in-out;
+}
+
+// The Discogs logo fills its whole box (Font Awesome icons have built-in padding), so draw it a bit smaller
+.contact-icons a svg.social-svg.social-svg-discogs {
+  width: 2.7rem;
+  height: 2.7rem;
+  margin-inline: 0.35rem;
+}
+
+.contact-icons a:hover svg.social-svg {
+  color: var(--global-theme-color);
+}
+
+// Discogs record mosaic (_includes/discogs_mosaic.liquid)
+.discogs-mosaic {
+  margin: 1rem 0 2rem;
+
+  .discogs-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin: 0;
+    }
+
+    select {
+      font: inherit;
+      color: var(--global-text-color);
+      background-color: var(--global-bg-color);
+      border: 1px solid var(--global-divider-color);
+      border-radius: 0.375rem;
+      padding: 0.2rem 0.4rem;
+    }
+  }
+
+  .discogs-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .discogs-chip {
+    font: inherit;
+    font-size: 0.82rem;
+    color: var(--global-text-color);
+    background-color: var(--global-bg-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 999px;
+    padding: 0.15rem 0.7rem;
+    cursor: pointer;
+
+    &[aria-pressed="true"] {
+      color: white;
+      background-color: var(--global-theme-color);
+      border-color: var(--global-theme-color);
+    }
+  }
+
+  .discogs-count {
+    margin-left: auto;
+    color: var(--global-text-color-light);
+    font-variant-numeric: tabular-nums;
+  }
+
+  // Square covers, edge to edge like a wall of records: at least 5 across (4 on phones), more when there's room
+  .discogs-grid {
+    --min-cols: 5;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(120px, calc((100% - (var(--min-cols) - 1) * 4px) / var(--min-cols))), 1fr));
+    gap: 4px;
+
+    @media (max-width: 575.98px) {
+      --min-cols: 4;
+    }
+  }
+
+  .discogs-status {
+    grid-column: 1 / -1;
+    color: var(--global-text-color-light);
+  }
+
+  .discogs-tile {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    background-color: var(--global-divider-color);
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img,
+    &:focus-visible img {
+      transform: scale(1.06);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--global-theme-color);
+      outline-offset: -3px;
+    }
+  }
+
+  // Title and artist slide up over the cover on hover / keyboard focus
+  .discogs-tile-caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1.6rem 0.5rem 0.45rem;
+    text-align: left;
+    color: white;
+    line-height: 1.2;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .discogs-tile:hover .discogs-tile-caption,
+  .discogs-tile:focus-visible .discogs-tile-caption {
+    opacity: 1;
+    transform: none;
+  }
+
+  .discogs-tile-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .discogs-tile-artist {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  // Detail card
+  .discogs-detail {
+    width: min(720px, calc(100vw - 2rem));
+    padding: 1.5rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.6rem;
+    color: var(--global-text-color);
+    background-color: var(--global-bg-color);
+    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+
+    &::backdrop {
+      background-color: rgba(0, 0, 0, 0.55);
+    }
+  }
+
+  .discogs-detail-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+
+    @media (max-width: 575.98px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  .discogs-detail-cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0.375rem;
+    box-shadow: 0 8px 20px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .discogs-detail-title {
+    margin: 0 0 0.2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .discogs-detail-artist {
+    margin: 0 0 1rem;
+    font-size: 1.05rem;
+    color: var(--global-text-color-light);
+  }
+
+  .discogs-detail-meta {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.25rem 0.9rem;
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+
+    dt {
+      font-weight: 600;
+    }
+
+    dd {
+      margin: 0;
+    }
+  }
+
+  .discogs-close {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.7rem;
+    border: 0;
+    background: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--global-text-color-light);
+    cursor: pointer;
+  }
+
+  .discogs-detail-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    button {
+      font: inherit;
+      color: var(--global-theme-color);
+      background: none;
+      border: 1px solid var(--global-divider-color);
+      border-radius: 999px;
+      padding: 0.2rem 0.9rem;
+      cursor: pointer;
+
+      &:hover {
+        border-color: var(--global-theme-color);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .discogs-tile img,
+    .discogs-tile-caption {
+      transition: none;
+    }
+  }
+}
+
+// Spotify Wrapped-style panel (_includes/spotify_wrapped.liquid). Deliberately dark in both themes, like Wrapped.
+.spotify-wrapped {
+  --sw-bg: #121212;
+  --sw-text: #ffffff;
+  --sw-muted: rgba(255, 255, 255, 0.65);
+  --sw-line: rgba(255, 255, 255, 0.12);
+  --sw-from: #1db954;
+  --sw-to: #1e91a0;
+
+  position: relative;
+  margin: 1rem 0 2rem;
+  padding: 1.25rem 1.5rem 1rem;
+  border-radius: 1rem;
+  color: var(--sw-text);
+  background:
+    radial-gradient(120% 70% at 100% 0%, color-mix(in srgb, var(--sw-from) 55%, transparent), transparent 60%),
+    radial-gradient(90% 60% at 0% 100%, color-mix(in srgb, var(--sw-to) 45%, transparent), transparent 60%),
+    var(--sw-bg);
+  transition: background 0.4s ease;
+  overflow: hidden;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+
+  // The theme gives every div/li/span/strong the page text color; inside this dark panel inherit white instead
+  div,
+  li,
+  span,
+  strong,
+  h3 {
+    color: inherit;
+    font-family: inherit;
+  }
+
+  // Each time range gets its own colors
+  &[data-range="1"] {
+    --sw-from: #ff4f9a;
+    --sw-to: #ff9f43;
+  }
+
+  &[data-range="2"] {
+    --sw-from: #8b5cf6;
+    --sw-to: #3b82f6;
+  }
+
+  a {
+    color: var(--sw-text);
+  }
+
+  .spotify-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .spotify-tab {
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--sw-text);
+    background: rgba(255, 255, 255, 0.1);
+    border: 0;
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    cursor: pointer;
+
+    &[aria-selected="true"] {
+      color: #000;
+      background: #fff;
+      font-weight: 600;
+    }
+  }
+
+  .spotify-kicker {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sw-muted);
+  }
+
+  // #1 artist, big
+  .spotify-hero {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+
+    &:hover .spotify-hero-name {
+      text-decoration: underline;
+    }
+  }
+
+  .spotify-hero-art {
+    flex: none;
+    width: clamp(96px, 22vw, 150px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(135deg, var(--sw-from), var(--sw-to));
+
+    .spotify-initials {
+      font-size: clamp(2.5rem, 7vw, 4rem);
+    }
+  }
+
+  .spotify-hero-name {
+    display: block;
+    font-size: clamp(1.7rem, 5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  // Artists #2-10: round photos with their rank
+  .spotify-artists {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 1.25rem 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      text-align: center;
+      text-decoration: none;
+
+      &:hover .spotify-artist-name {
+        text-decoration: underline;
+      }
+
+      &:hover .spotify-artist-art img {
+        transform: scale(1.06);
+      }
+    }
+  }
+
+  .spotify-artist-art {
+    position: relative;
+    width: 100%;
+    max-width: 120px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sw-from), var(--sw-to));
+    box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.9);
+
+    img {
+      border-radius: 50%;
+      transition: transform 0.25s ease;
+    }
+
+    .spotify-initials {
+      font-size: 2rem;
+    }
+  }
+
+  .spotify-artist-rank {
+    position: absolute;
+    left: -0.2rem;
+    bottom: -0.2rem;
+    min-width: 1.9rem;
+    height: 1.9rem;
+    padding: 0 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #000;
+    background: #fff;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .spotify-artist-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .spotify-hero-art img,
+  .spotify-artist-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .spotify-initials {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .spotify-genres {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+
+    .spotify-kicker {
+      margin-right: 0.3rem;
+    }
+  }
+
+  .spotify-genre {
+    font-size: 0.85rem;
+    text-transform: capitalize;
+    padding: 0.15rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  .spotify-footer {
+    margin: 1.25rem 0 0;
+    font-size: 0.78rem;
+    color: var(--sw-muted);
+
+    strong {
+      color: var(--sw-text);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    .spotify-artist-art img {
+      transition: none;
+    }
+  }
+}
+
+// Hobbies page: each category is a <details> section that expands when its heading is clicked
+details.hobby {
+  margin-top: 1.25rem;
+
+  > summary {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    list-style: none;
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    // rule running to the right edge, then a chevron
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: var(--global-divider-color);
+      order: 1;
+    }
+
+    &::before {
+      content: "";
+      order: 2;
+      width: 0.6rem;
+      height: 0.6rem;
+      border-right: 2px solid var(--global-text-color-light);
+      border-bottom: 2px solid var(--global-text-color-light);
+      transform: rotate(45deg) translateY(-25%);
+      transition: transform 0.2s ease;
+    }
+
+    &:hover h2,
+    &:focus-visible h2 {
+      color: var(--global-theme-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--global-theme-color);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+  }
+
+  &[open] > summary::before {
+    transform: rotate(-135deg) translateY(-25%);
+  }
+
+  &[open] > summary {
+    margin-bottom: 1rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    > summary::before {
+      transition: none;
+    }
+  }
+}
+
+// Spotify + Discogs arranged together; the layout is chosen with data-layout
+.music-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 2rem;
+  align-items: start;
+
+  > div > h3 {
+    margin-top: 0.5rem;
+  }
+
+  .ms-tabs {
+    display: none;
+  }
+
+  &[data-layout="records-first"] .ms-discogs {
+    order: -1;
+  }
+
+  // Thin Spotify column that stays in view while the records scroll by
+  &[data-layout="side-right"],
+  &[data-layout="side-left"],
+  &[data-layout="split"] {
+    @media (min-width: 768px) {
+      .ms-spotify {
+        position: sticky;
+        top: 72px;
+      }
+    }
+  }
+
+  &[data-layout="side-right"] {
+    @media (min-width: 768px) {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+
+      .ms-discogs {
+        order: -1;
+      }
+    }
+  }
+
+  &[data-layout="side-left"] {
+    @media (min-width: 768px) {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    }
+  }
+
+  &[data-layout="split"] {
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &[data-layout="tabs"] {
+    .ms-tabs {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+
+      button {
+        font: inherit;
+        color: var(--global-text-color);
+        background: none;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        padding: 0.2rem 0.3rem;
+        cursor: pointer;
+
+        &[aria-selected="true"] {
+          color: var(--global-theme-color);
+          border-bottom-color: var(--global-theme-color);
+        }
+      }
+    }
+
+    > div > h3 {
+      display: none;
+    }
+
+    &[data-active="spotify"] .ms-discogs,
+    &[data-active="discogs"] .ms-spotify {
+      display: none;
+    }
+  }
+}
+
+// The Spotify panel adapts to the width it's given (e.g. a thin sidebar), not just the screen
+.spotify-wrapped {
+  container-type: inline-size;
+}
+
+@container (max-width: 420px) {
+  .spotify-wrapped .spotify-panel {
+    .spotify-hero {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .spotify-hero-art {
+      width: 110px;
+    }
+
+    .spotify-hero-name {
+      font-size: 1.7rem;
+    }
+
+    .spotify-artists {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem 0.6rem;
+    }
+
+    .spotify-artist-name {
+      font-size: 0.78rem;
+    }
+
+    .spotify-artist-rank {
+      min-width: 1.5rem;
+      height: 1.5rem;
+      font-size: 0.72rem;
+    }
+  }
+}
+
+// Letterboxd diary (_includes/letterboxd_diary.liquid)
+.letterboxd-diary {
+  --lb-green: #00b020; // Letterboxd's star green, darkened a touch for contrast on white
+  --lb-orange: #ff8000;
+  --lb-blue: #40bcf4;
+
+  margin: 1rem 0 2rem;
+
+  .lb-star {
+    color: var(--lb-green);
+    letter-spacing: 0.02em;
+  }
+
+  .lb-heart {
+    color: var(--lb-orange);
+  }
+
+  .lb-rewatch {
+    color: var(--lb-blue);
+  }
+
+  .lb-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .lb-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.1rem;
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--global-text-color-light);
+
+    strong {
+      color: var(--global-text-color);
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  .lb-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+
+    button {
+      font: inherit;
+      font-size: 0.82rem;
+      color: var(--global-text-color);
+      background-color: var(--global-bg-color);
+      border: 1px solid var(--global-divider-color);
+      border-radius: 999px;
+      padding: 0.15rem 0.7rem;
+      cursor: pointer;
+
+      &[aria-pressed="true"] {
+        color: white;
+        background-color: var(--global-theme-color);
+        border-color: var(--global-theme-color);
+      }
+    }
+  }
+
+  // Posters: at least 5 across (4 on phones), more when there's room
+  .lb-grid {
+    --min-cols: 5;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(110px, calc((100% - (var(--min-cols) - 1) * 0.75rem) / var(--min-cols))), 1fr));
+    gap: 1rem 0.75rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @media (max-width: 575.98px) {
+      --min-cols: 4;
+      gap: 0.75rem 0.5rem;
+    }
+  }
+
+  .lb-tile {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    &:focus-visible .lb-poster {
+      outline: 3px solid var(--global-theme-color);
+      outline-offset: 2px;
+    }
+
+    &:hover .lb-poster img {
+      transform: scale(1.04);
+    }
+
+    &:hover .lb-tile-caption,
+    &:focus-visible .lb-tile-caption {
+      opacity: 1;
+    }
+  }
+
+  .lb-poster {
+    position: relative;
+    display: block;
+    aspect-ratio: 2 / 3;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: var(--global-divider-color);
+    box-shadow: 0 6px 16px -10px rgba(0, 0, 0, 0.6);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.25s ease;
+    }
+  }
+
+  .lb-poster-fallback {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  .lb-tile-caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 1.5rem 0.4rem 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+
+    span {
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 400;
+    }
+  }
+
+  .lb-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    line-height: 1;
+  }
+
+  .lb-footer {
+    margin: 1rem 0 0;
+    font-size: 0.85rem;
+    color: var(--global-text-color-light);
+  }
+
+  // Detail card
+  .lb-detail {
+    width: min(720px, calc(100vw - 2rem));
+    padding: 1.5rem;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.6rem;
+    color: var(--global-text-color);
+    background-color: var(--global-bg-color);
+    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+
+    &::backdrop {
+      background-color: rgba(0, 0, 0, 0.55);
+    }
+  }
+
+  .lb-detail-body {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 1.5rem;
+    align-items: start;
+
+    @media (max-width: 575.98px) {
+      grid-template-columns: minmax(0, 1fr);
+
+      .lb-detail-poster {
+        max-width: 200px;
+      }
+    }
+  }
+
+  .lb-detail-poster {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 0.375rem;
+    box-shadow: 0 8px 20px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .lb-detail-title {
+    margin: 0 0 0.4rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .lb-detail-rating {
+    margin: 0 0 0.25rem;
+    font-size: 1.15rem;
+  }
+
+  .lb-detail-watched {
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+    color: var(--global-text-color-light);
+  }
+
+  .lb-detail-review p {
+    font-style: italic;
+  }
+
+  .lb-spoiler-toggle {
+    display: block;
+    margin-bottom: 1rem;
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--global-theme-color);
+    background: none;
+    border: 1px dashed var(--global-divider-color);
+    border-radius: 0.375rem;
+    padding: 0.4rem 0.7rem;
+    cursor: pointer;
+  }
+
+  .lb-close {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.7rem;
+    border: 0;
+    background: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--global-text-color-light);
+    cursor: pointer;
+  }
+
+  .lb-detail-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    button {
+      font: inherit;
+      color: var(--global-theme-color);
+      background: none;
+      border: 1px solid var(--global-divider-color);
+      border-radius: 999px;
+      padding: 0.2rem 0.9rem;
+      cursor: pointer;
+
+      &:hover {
+        border-color: var(--global-theme-color);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lb-poster img,
+    .lb-tile-caption {
+      transition: none;
+    }
+  }
+}
+
+// Ways to separate the hobby categories. Each <details class="hobby"> sets its own --hobby-color.
+.hobbies {
+  details.hobby {
+    --hobby-tint: color-mix(in srgb, var(--hobby-color, var(--global-theme-color)) 9%, transparent);
+    --hobby-c: var(--hobby-color, var(--global-theme-color));
+  }
+
+  // 2. Color bar down the left side
+  &[data-style="bar"] details.hobby {
+    margin-top: 1.5rem;
+    padding: 0.25rem 0 0.25rem 1.1rem;
+    border-left: 4px solid var(--hobby-c);
+  }
+
+  // 3. Soft tinted background
+  &[data-style="tint"] details.hobby {
+    margin-top: 1rem;
+    padding: 0.9rem 1.25rem;
+    border-radius: 0.75rem;
+    background-color: var(--hobby-tint);
+
+    > summary::after {
+      background-color: color-mix(in srgb, var(--hobby-c) 30%, transparent);
+    }
+  }
+
+  // 4. Cards with a colored top edge
+  &[data-style="cards"] details.hobby {
+    margin-top: 1.25rem;
+    padding: 0.9rem 1.25rem;
+    border: 1px solid var(--global-divider-color);
+    border-top: 4px solid var(--hobby-c);
+    border-radius: 0.6rem;
+    box-shadow: 0 8px 22px -16px rgba(0, 0, 0, 0.5);
+
+    > summary::after {
+      background-color: transparent;
+    }
+  }
+
+  // 5. Colored header band, content boxed underneath
+  &[data-style="band"] details.hobby {
+    margin-top: 1.25rem;
+    border: 1px solid var(--hobby-c);
+    border-radius: 0.6rem;
+    overflow: hidden;
+
+    > summary {
+      padding: 0.55rem 1.1rem;
+      background-color: var(--hobby-c);
+
+      h2 {
+        color: white;
+      }
+
+      &::after {
+        background-color: transparent;
+      }
+
+      &::before {
+        border-color: white;
+      }
+    }
+
+    &[open] > summary {
+      margin-bottom: 0;
+    }
+
+    > :not(summary) {
+      margin-left: 1.1rem;
+      margin-right: 1.1rem;
+    }
+
+    > :not(summary):first-of-type {
+      margin-top: 1rem;
+    }
+
+    &[open] {
+      padding-bottom: 0.75rem;
+    }
+  }
+
+  // 6. Divided list: hairlines between categories, a colored dot before each title
+  &[data-style="list"] {
+    border-bottom: 1px solid var(--global-divider-color);
+
+    details.hobby {
+      margin-top: 0;
+      padding: 0.9rem 0;
+      border-top: 1px solid var(--global-divider-color);
+
+      > summary {
+        h2 {
+          display: flex;
+          align-items: center;
+          gap: 0.7rem;
+
+          &::before {
+            content: "";
+            width: 0.7rem;
+            height: 0.7rem;
+            border-radius: 50%;
+            background-color: var(--hobby-c);
+          }
+        }
+
+        &::after {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  // 7. Title in the category color with a matching rule
+  &[data-style="accent"] details.hobby {
+    margin-top: 1.5rem;
+
+    > summary {
+      h2 {
+        color: var(--hobby-c);
+        font-weight: 500;
+      }
+
+      &::after {
+        height: 2px;
+        background-color: color-mix(in srgb, var(--hobby-c) 45%, transparent);
+      }
+
+      &::before {
+        border-color: var(--hobby-c);
+      }
+
+      &:hover h2 {
+        color: var(--hobby-c);
+        text-decoration: underline;
+        text-underline-offset: 6px;
+        text-decoration-thickness: 2px;
+      }
+    }
+  }
+}

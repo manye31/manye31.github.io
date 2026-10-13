@@ -117,6 +117,19 @@
               {% endif %}
             {% endif %}
           {% endfor %}
+          <!-- Secret "Hobbies" page: only shown once this visitor has found /hobbies/ -->
+          <li class="nav-item nav-hobbies {% if page.permalink == '/hobbies/' %}active{% endif %}" hidden>
+            <a class="nav-link" href="{{ '/hobbies/' | relative_url }}">Hobbies</a>
+          </li>
+          <script>
+            (function () {
+              var item = document.currentScript.previousElementSibling;
+              try {
+                if ({% if page.permalink == '/hobbies/' %}true{% else %}false{% endif %}) localStorage.setItem('hobbies-discovered', '1');
+                if (localStorage.getItem('hobbies-discovered')) item.hidden = false;
+              } catch (e) {}
+            })();
+          </script>
           {% if site.search_enabled %}
             <!-- Search -->
             <li class="nav-item">

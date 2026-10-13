@@ -1,0 +1,96 @@
+{% comment %}
+  Spotify-Wrapped-style summary of my top artists and genres, from _data/spotify.json
+  (refreshed daily by .github/workflows/hobby-data.yml). Usage: {% include spotify_wrapped.liquid %}
+{% endcomment %}
+{% assign spotify = site.data.spotify %}
+{% if spotify and spotify.ranges.size > 0 %}
+  <div class="spotify-wrapped" data-range="0">
+    <div class="spotify-tabs" role="tablist" aria-label="Time range">
+      {% for range in spotify.ranges %}
+        <button
+          type="button"
+          role="tab"
+          class="spotify-tab"
+          data-index="{{ forloop.index0 }}"
+          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+        >
+          {{ range.label }}
+        </button>
+      {% endfor %}
+    </div>
+
+    {% for range in spotify.ranges %}
+      {% assign top = range.artists.first %}
+      <section class="spotify-panel spotify-panel-{{ forloop.index0 }}" role="tabpanel" {% unless forloop.first %}hidden{% endunless %}>
+        <a class="spotify-hero" href="{{ top.url }}" target="_blank" rel="noopener">
+          <span class="spotify-hero-art">
+            {% if top.image %}
+              <img src="{{ top.image }}" alt="">
+            {% else %}
+              <span class="spotify-initials">{{ top.name | slice: 0 }}</span>
+            {% endif %}
+          </span>
+          <span class="spotify-hero-text">
+            <span class="spotify-kicker">Top artist</span>
+            <span class="spotify-hero-name">{{ top.name }}</span>
+          </span>
+        </a>
+
+        <ol class="spotify-artists" start="2">
+          {% for artist in range.artists offset: 1 %}
+            <li>
+              <a href="{{ artist.url }}" target="_blank" rel="noopener">
+                <span class="spotify-artist-art">
+                  {% if artist.image %}
+                    <img src="{{ artist.image }}" alt="">
+                  {% else %}
+                    <span class="spotify-initials">{{ artist.name | slice: 0 }}</span>
+                  {% endif %}
+                  <span class="spotify-artist-rank">{{ forloop.index | plus: 1 }}</span>
+                </span>
+                <span class="spotify-artist-name">{{ artist.name }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ol>
+
+        {% if range.genres.size > 0 %}
+          <div class="spotify-genres">
+            <span class="spotify-kicker">Top genres</span>
+            {% for genre in range.genres %}
+              <span class="spotify-genre">{{ genre }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </section>
+    {% endfor %}
+
+    <p class="spotify-footer">
+      {% if spotify.sample %}
+        <strong>Sample data</strong> · connect Spotify to show real listening ·
+      {% else %}
+        Updated {{ spotify.updated | date: '%b %-d, %Y' }} ·
+      {% endif %}
+      from Spotify
+    </p>
+  </div>
+  <script>
+    (function () {
+      var root = document.currentScript.previousElementSibling;
+      var tabs = root.querySelectorAll('.spotify-tab');
+      var panels = root.querySelectorAll('.spotify-panel');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var i = Number(tab.dataset.index);
+          tabs.forEach(function (t) {
+            t.setAttribute('aria-selected', t === tab);
+          });
+          panels.forEach(function (p, j) {
+            p.hidden = j !== i;
+          });
+          root.dataset.range = i;
+        });
+      });
+    })();
+  </script>
+{% endif %}

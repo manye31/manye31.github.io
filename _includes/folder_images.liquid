@@ -1,0 +1,46 @@
+{% comment %}
+  Lists the photos in assets/img/<include.folder>/ (sorted by filename) into `folder_images`.
+  Skips the -480/-800/-1400 copies the imagemagick plugin makes, and points each photo at its 800px .webp copy when
+  that exists (much smaller than phone originals). Usage: {% include folder_images.liquid folder="profile_rotation" %}
+{% endcomment %}
+{% assign folder_dir = include.folder | prepend: '/assets/img/' | append: '/' %}
+{% assign folder_exts = '.jpg,.jpeg,.png,.gif,.webp' | split: ',' %}
+{% assign folder_originals = '' | split: '' %}
+{% assign folder_resized = '' | split: '' %}
+{% for file in site.static_files %}
+  {% assign file_ext = file.extname | downcase %}
+  {% if file.path contains folder_dir and folder_exts contains file_ext %}
+    {% comment %} Skip the -480/-800/-1400 copies the imagemagick plugin makes {% endcomment %}
+    {% assign is_resized_copy = false %}
+    {% for width in site.imagemagick.widths %}
+      {% assign width_suffix = width | prepend: '-' %}
+      {% if file.basename contains width_suffix %}
+        {% assign suffix_size = width_suffix | size %}
+        {% assign suffix_start = file.basename | size | minus: suffix_size %}
+        {% assign file_suffix = file.basename | slice: suffix_start, suffix_size %}
+        {% if file_suffix == width_suffix %}
+          {% assign is_resized_copy = true %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if is_resized_copy %}
+      {% assign folder_resized = folder_resized | push: file.path %}
+    {% else %}
+      {% assign folder_originals = folder_originals | push: file.path %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% assign folder_originals = folder_originals | sort %}
+{% comment %} Show the 800px copy the imagemagick plugin makes (much smaller than phone originals) when it exists {% endcomment %}
+{% assign folder_images = '' | split: '' %}
+{% for path in folder_originals %}
+  {% assign path_parts = path | split: '.' %}
+  {% assign path_ext = path_parts | last | prepend: '.' %}
+  {% assign path_stem_size = path | size | minus: path_ext.size %}
+  {% assign resized_path = path | slice: 0, path_stem_size | append: '-800.webp' %}
+  {% if folder_resized contains resized_path %}
+    {% assign folder_images = folder_images | push: resized_path %}
+  {% else %}
+    {% assign folder_images = folder_images | push: path %}
+  {% endif %}
+{% endfor %}

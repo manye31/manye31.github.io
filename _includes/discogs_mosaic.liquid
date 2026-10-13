@@ -1,0 +1,267 @@
+{% comment %}
+  Mosaic of a public Discogs collection, loaded live in the visitor's browser from the Discogs API (no build step,
+  always up to date). Click a cover for details and a link to the release on Discogs.
+  Usage: {% include discogs_mosaic.liquid username="manye31" %}
+{% endcomment %}
+<div class="discogs-mosaic" data-username="{{ include.username }}">
+  <div class="discogs-controls">
+    <label>
+      Sort
+      <select class="discogs-sort">
+        <option value="added">Recently added</option>
+        <option value="artist">Artist A–Z</option>
+        <option value="title">Album A–Z</option>
+        <option value="year">Year (newest)</option>
+      </select>
+    </label>
+    <div class="discogs-genres" role="group" aria-label="Filter by genre"></div>
+    <span class="discogs-count"></span>
+  </div>
+
+  <div class="discogs-grid" aria-live="polite">
+    <p class="discogs-status">Loading records…</p>
+  </div>
+
+  <dialog class="discogs-detail" aria-label="Record details">
+    <button type="button" class="discogs-close" aria-label="Close">×</button>
+    <div class="discogs-detail-body">
+      <img class="discogs-detail-cover" alt="">
+      <div class="discogs-detail-info">
+        <h3 class="discogs-detail-title"></h3>
+        <p class="discogs-detail-artist"></p>
+        <dl class="discogs-detail-meta"></dl>
+        <a class="discogs-detail-link" target="_blank" rel="noopener">View on Discogs ↗</a>
+      </div>
+    </div>
+    <div class="discogs-detail-nav">
+      <button type="button" class="discogs-prev" aria-label="Previous record">←</button>
+      <button type="button" class="discogs-next" aria-label="Next record">→</button>
+    </div>
+  </dialog>
+
+  <noscript>
+    <p><a href="https://www.discogs.com/user/{{ include.username }}/collection">See my record collection on Discogs →</a></p>
+  </noscript>
+</div>
+
+<script>
+  (function () {
+    var root = document.currentScript.previousElementSibling;
+    var username = root.dataset.username;
+    var grid = root.querySelector('.discogs-grid');
+    var sortSelect = root.querySelector('.discogs-sort');
+    var genreBox = root.querySelector('.discogs-genres');
+    var countEl = root.querySelector('.discogs-count');
+    var dialog = root.querySelector('.discogs-detail');
+    var CACHE_KEY = 'discogs-collection-' + username;
+    var CACHE_MS = 60 * 60 * 1000; // re-fetch at most once an hour per visitor
+
+    var records = [];
+    var shown = [];
+    var genre = null;
+    var openIndex = -1;
+
+    // "Artist (2)" is Discogs' way of telling same-named artists apart; hide that suffix
+    function cleanName(name) {
+      return name.replace(/\s\(\d+\)$/, '');
+    }
+    function artistLine(artists) {
+      return artists
+        .map(function (a, i) {
+          var join = a.join && i < artists.length - 1 ? ' ' + a.join + ' ' : i < artists.length - 1 ? ', ' : '';
+          return cleanName(a.anv || a.name) + join;
+        })
+        .join('')
+        .replace(/\s+,/g, ',');
+    }
+    function toRecord(r) {
+      var b = r.basic_information;
+      return {
+        id: b.id,
+        title: b.title,
+        artist: artistLine(b.artists),
+        year: b.year || null,
+        cover: b.cover_image,
+        thumb: b.thumb,
+        added: r.date_added,
+        genres: b.genres || [],
+        styles: b.styles || [],
+        label: b.labels && b.labels.length ? cleanName(b.labels[0].name) : '',
+        format: (b.formats || [])
+          .map(function (f) {
+            return [f.qty > 1 ? f.qty + '×' : '', f.name, (f.descriptions || []).join(', ')].filter(Boolean).join(' ');
+          })
+          .join(' + '),
+      };
+    }
+
+    function fetchAll() {
+      try {
+        var cached = JSON.parse(sessionStorage.getItem(CACHE_KEY));
+        if (cached && Date.now() - cached.time < CACHE_MS) return Promise.resolve(cached.records);
+      } catch (e) {}
+      var all = [];
+      function page(n) {
+        var url =
+          'https://api.discogs.com/users/' + encodeURIComponent(username) + '/collection/folders/0/releases?per_page=100&sort=added&sort_order=desc&page=' + n;
+        return fetch(url)
+          .then(function (res) {
+            if (!res.ok) throw new Error('Discogs returned ' + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            all = all.concat(data.releases.map(toRecord));
+            if (n < data.pagination.pages) return page(n + 1);
+            try {
+              sessionStorage.setItem(CACHE_KEY, JSON.stringify({ time: Date.now(), records: all }));
+            } catch (e) {}
+            return all;
+          });
+      }
+      return page(1);
+    }
+
+    function sortRecords(list) {
+      var by = sortSelect.value;
+      var copy = list.slice();
+      var text = function (k) {
+        return function (a, b) {
+          return a[k].localeCompare(b[k], undefined, { sensitivity: 'base' });
+        };
+      };
+      if (by === 'artist') copy.sort(function (a, b) { return text('artist')(a, b) || (a.year || 0) - (b.year || 0); });
+      else if (by === 'title') copy.sort(text('title'));
+      else if (by === 'year') copy.sort(function (a, b) { return (b.year || 0) - (a.year || 0); });
+      else copy.sort(function (a, b) { return b.added.localeCompare(a.added); });
+      return copy;
+    }
+
+    function render() {
+      shown = sortRecords(
+        records.filter(function (r) {
+          return !genre || r.genres.indexOf(genre) !== -1;
+        })
+      );
+      grid.innerHTML = '';
+      shown.forEach(function (r, i) {
+        var tile = document.createElement('button');
+        tile.type = 'button';
+        tile.className = 'discogs-tile';
+        tile.setAttribute('aria-label', r.title + ' by ' + r.artist);
+        tile.innerHTML =
+          '<img loading="lazy" alt="">' +
+          '<span class="discogs-tile-caption"><span class="discogs-tile-title"></span><span class="discogs-tile-artist"></span></span>';
+        // Show Discogs' small thumbnail right away, then swap in the sharp cover once it has downloaded
+        var img = tile.querySelector('img');
+        img.src = r.thumb || r.cover;
+        if (r.thumb && r.cover && r.thumb !== r.cover) {
+          img.addEventListener('load', function upgrade() {
+            img.removeEventListener('load', upgrade);
+            var sharp = new Image();
+            sharp.onload = function () {
+              img.src = r.cover;
+            };
+            sharp.src = r.cover;
+          });
+        }
+        tile.querySelector('.discogs-tile-title').textContent = r.title;
+        tile.querySelector('.discogs-tile-artist').textContent = r.artist;
+        tile.addEventListener('click', function () {
+          openDetail(i);
+        });
+        grid.appendChild(tile);
+      });
+      countEl.textContent = shown.length + (shown.length === 1 ? ' record' : ' records');
+    }
+
+    function renderGenres() {
+      var counts = {};
+      records.forEach(function (r) {
+        r.genres.forEach(function (g) {
+          counts[g] = (counts[g] || 0) + 1;
+        });
+      });
+      var names = Object.keys(counts).sort(function (a, b) {
+        return counts[b] - counts[a];
+      });
+      genreBox.innerHTML = '';
+      [null].concat(names).forEach(function (g) {
+        var chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'discogs-chip';
+        chip.textContent = g ? g : 'All';
+        chip.setAttribute('aria-pressed', g === genre);
+        chip.addEventListener('click', function () {
+          genre = g;
+          genreBox.querySelectorAll('.discogs-chip').forEach(function (c) {
+            c.setAttribute('aria-pressed', c === chip);
+          });
+          render();
+        });
+        genreBox.appendChild(chip);
+      });
+    }
+
+    function openDetail(i) {
+      openIndex = (i + shown.length) % shown.length;
+      var r = shown[openIndex];
+      dialog.querySelector('.discogs-detail-cover').src = r.cover || r.thumb;
+      dialog.querySelector('.discogs-detail-cover').alt = r.title + ' cover';
+      dialog.querySelector('.discogs-detail-title').textContent = r.title;
+      dialog.querySelector('.discogs-detail-artist').textContent = r.artist;
+      var meta = [
+        ['Year', r.year],
+        ['Label', r.label],
+        ['Format', r.format],
+        ['Genre', r.genres.join(', ')],
+        ['Style', r.styles.join(', ')],
+        ['Added', new Date(r.added).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })],
+      ];
+      var dl = dialog.querySelector('.discogs-detail-meta');
+      dl.innerHTML = '';
+      meta.forEach(function (m) {
+        if (!m[1]) return;
+        var dt = document.createElement('dt');
+        var dd = document.createElement('dd');
+        dt.textContent = m[0];
+        dd.textContent = m[1];
+        dl.appendChild(dt);
+        dl.appendChild(dd);
+      });
+      dialog.querySelector('.discogs-detail-link').href = 'https://www.discogs.com/release/' + r.id;
+      if (!dialog.open) dialog.showModal();
+    }
+
+    dialog.querySelector('.discogs-close').addEventListener('click', function () {
+      dialog.close();
+    });
+    dialog.querySelector('.discogs-prev').addEventListener('click', function () {
+      openDetail(openIndex - 1);
+    });
+    dialog.querySelector('.discogs-next').addEventListener('click', function () {
+      openDetail(openIndex + 1);
+    });
+    // Click on the dimmed backdrop closes; arrow keys step through records
+    dialog.addEventListener('click', function (e) {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') openDetail(openIndex - 1);
+      if (e.key === 'ArrowRight') openDetail(openIndex + 1);
+    });
+    sortSelect.addEventListener('change', render);
+
+    fetchAll()
+      .then(function (list) {
+        records = list;
+        renderGenres();
+        render();
+      })
+      .catch(function () {
+        grid.innerHTML =
+          '<p class="discogs-status">Couldn’t load the collection right now. <a href="https://www.discogs.com/user/' +
+          encodeURIComponent(username) +
+          '/collection">See it on Discogs →</a></p>';
+      });
+  })();
+</script>

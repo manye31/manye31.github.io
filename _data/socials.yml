@@ -10,7 +10,7 @@
 # bluesky_url: # your bluesky URL
 # dblp_url: # your DBLP profile url
 # discord_id: # your discord id (18-digit unique numerical identifier)
-email: micahn@andrew.cmu.com # your email address
+email: micahn@andrew.cmu.edu # your email address
 # facebook_id: # your facebook id
 # flickr_id: # your flickr id
 scholar_userid: pkyCku8AAAAJ # your Google Scholar ID
@@ -29,6 +29,9 @@ linkedin_username: micahnye # your LinkedIn user name
 # mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 # medium_username: # your Medium username
 orcid_id: 0009-0001-7263-7401 # your ORCID ID
+# discogs_username: manye31 # discogs.com/user/<this>
+# letterboxd_username: manye31 # letterboxd.com/<this>
+# goodreads_id: 204955171-micah-nye # the part after goodreads.com/user/show/
 # osf_id: # your OSF ID
 # pinterest_id: # your pinterest id
 # publons_id: # your ID on Publons
@@ -37,7 +40,7 @@ orcid_id: 0009-0001-7263-7401 # your ORCID ID
 # rss_icon: true # comment this line to hide the RSS icon
 # scopus_id: # your profile on Scopus
 # semanticscholar_id: # your Semantic Scholar ID
-# spotify_id: # your spotify id
+# spotify_id: micallenye # your spotify id
 # stackoverflow_id: # your stackoverflow id
 # strava_userid: # your strava user id
 # telegram_username: # your Telegram user name

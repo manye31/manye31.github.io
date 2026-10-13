@@ -1,0 +1,152 @@
+{
+  "sample": false,
+  "updated": "2026-10-12",
+  "ranges": [
+    {
+      "key": "short_term",
+      "label": "Last month",
+      "genres": [],
+      "artists": [
+        {
+          "name": "Kendrick Lamar",
+          "url": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
+          "image": "https://i.scdn.co/image/ab6761610000517439ba6dcd4355c03de0b50918"
+        },
+        {
+          "name": "Nine Inch Nails",
+          "url": "https://open.spotify.com/artist/0X380XXQSNBYuleKzav5UO",
+          "image": "https://i.scdn.co/image/ab67616100005174752fca27c5b839ea47d5100d"
+        },
+        {
+          "name": "Gene Kelly",
+          "url": "https://open.spotify.com/artist/1mhlGWeiNrWnhJJc2EufYk",
+          "image": "https://i.scdn.co/image/ab67616100005174bf1955765947fa825e5969cc"
+        },
+        {
+          "name": "Meryl Streep",
+          "url": "https://open.spotify.com/artist/2HB65P72dFRiOKvbLLcil2",
+          "image": "https://i.scdn.co/image/48037fd8e79959f2be362fe6db0a95387b6cf3f0"
+        },
+        {
+          "name": "Julie Andrews",
+          "url": "https://open.spotify.com/artist/5RdqZVi36tpDPYNPw8jJbO",
+          "image": "https://i.scdn.co/image/653a1e04a0e5e2a2acd44b4e7054e98aaf99661f"
+        }
+      ]
+    },
+    {
+      "key": "medium_term",
+      "label": "Last 6 months",
+      "genres": [],
+      "artists": [
+        {
+          "name": "Tyler, The Creator",
+          "url": "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF",
+          "image": "https://i.scdn.co/image/ab67616100005174df2728294ff77dd11eeb18fb"
+        },
+        {
+          "name": "Kendrick Lamar",
+          "url": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
+          "image": "https://i.scdn.co/image/ab6761610000517439ba6dcd4355c03de0b50918"
+        },
+        {
+          "name": "Stevie Wonder",
+          "url": "https://open.spotify.com/artist/7guDJrEfX3qb6FEbdPA5qi",
+          "image": "https://i.scdn.co/image/37c7875911b1d8195b05d40061a86bd01908a0d9"
+        },
+        {
+          "name": "Bad Bunny",
+          "url": "https://open.spotify.com/artist/4q3ewBCX7sLwd24euuV69X",
+          "image": "https://i.scdn.co/image/ab6761610000517481f47f44084e0a09b5f0fa13"
+        },
+        {
+          "name": "Earth, Wind & Fire",
+          "url": "https://open.spotify.com/artist/4QQgXkCYTt3BlENzhyNETg",
+          "image": "https://i.scdn.co/image/ab676161000051749722e16a886767adf1178f92"
+        },
+        {
+          "name": "Nine Inch Nails",
+          "url": "https://open.spotify.com/artist/0X380XXQSNBYuleKzav5UO",
+          "image": "https://i.scdn.co/image/ab67616100005174752fca27c5b839ea47d5100d"
+        },
+        {
+          "name": "Kool & The Gang",
+          "url": "https://open.spotify.com/artist/3VNITwohbvU5Wuy5PC6dsI",
+          "image": "https://i.scdn.co/image/ab6761610000517469287c3f1b150bbead642499"
+        },
+        {
+          "name": "John Williams",
+          "url": "https://open.spotify.com/artist/3dRfiJ2650SZu6GbydcHNb",
+          "image": "https://i.scdn.co/image/ab6761610000517486b13e4d2e65ebf694384ef4"
+        },
+        {
+          "name": "Supertramp",
+          "url": "https://open.spotify.com/artist/3JsMj0DEzyWc0VDlHuy9Bx",
+          "image": "https://i.scdn.co/image/b0183fa5aa1cc1f8972bf49e2fc0ecce6bdb184d"
+        },
+        {
+          "name": "Michael Giacchino",
+          "url": "https://open.spotify.com/artist/4kLvhMAuCloLxoP1aVM7Lr",
+          "image": "https://i.scdn.co/image/ab676161000051749945209ac13720afd7eea2e3"
+        }
+      ]
+    },
+    {
+      "key": "long_term",
+      "label": "Last year",
+      "genres": [],
+      "artists": [
+        {
+          "name": "Earth, Wind & Fire",
+          "url": "https://open.spotify.com/artist/4QQgXkCYTt3BlENzhyNETg",
+          "image": "https://i.scdn.co/image/ab676161000051749722e16a886767adf1178f92"
+        },
+        {
+          "name": "Stevie Wonder",
+          "url": "https://open.spotify.com/artist/7guDJrEfX3qb6FEbdPA5qi",
+          "image": "https://i.scdn.co/image/37c7875911b1d8195b05d40061a86bd01908a0d9"
+        },
+        {
+          "name": "Kendrick Lamar",
+          "url": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
+          "image": "https://i.scdn.co/image/ab6761610000517439ba6dcd4355c03de0b50918"
+        },
+        {
+          "name": "Tyler, The Creator",
+          "url": "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF",
+          "image": "https://i.scdn.co/image/ab67616100005174df2728294ff77dd11eeb18fb"
+        },
+        {
+          "name": "Supertramp",
+          "url": "https://open.spotify.com/artist/3JsMj0DEzyWc0VDlHuy9Bx",
+          "image": "https://i.scdn.co/image/b0183fa5aa1cc1f8972bf49e2fc0ecce6bdb184d"
+        },
+        {
+          "name": "Jamiroquai",
+          "url": "https://open.spotify.com/artist/6J7biCazzYhU3gM9j1wfid",
+          "image": "https://i.scdn.co/image/ab676161000051747e6dca959714339b69e9718d"
+        },
+        {
+          "name": "Nine Inch Nails",
+          "url": "https://open.spotify.com/artist/0X380XXQSNBYuleKzav5UO",
+          "image": "https://i.scdn.co/image/ab67616100005174752fca27c5b839ea47d5100d"
+        },
+        {
+          "name": "Bad Bunny",
+          "url": "https://open.spotify.com/artist/4q3ewBCX7sLwd24euuV69X",
+          "image": "https://i.scdn.co/image/ab6761610000517481f47f44084e0a09b5f0fa13"
+        },
+        {
+          "name": "Electric Light Orchestra",
+          "url": "https://open.spotify.com/artist/7jefIIksOi1EazgRTfW2Pk",
+          "image": "https://i.scdn.co/image/ab676161000051746ee22df4403027ae525ced87"
+        },
+        {
+          "name": "War",
+          "url": "https://open.spotify.com/artist/3ICyfoySNDZqtBVmaBT84I",
+          "image": "https://i.scdn.co/image/ab6761610000517416ec6c21fa9d28f9cd95aff2"
+        }
+      ]
+    }
+  ]
+}

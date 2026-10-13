@@ -1,0 +1,173 @@
+{% comment %}
+  Recent Letterboxd diary from _data/letterboxd.json (refreshed daily by .github/workflows/hobby-data.yml).
+  Poster grid with my rating; click a poster for the review. Usage: {% include letterboxd_diary.liquid %}
+{% endcomment %}
+{% assign lb = site.data.letterboxd %}
+{% if lb and lb.films.size > 0 %}
+  {% assign rated = lb.films | where_exp: 'f', 'f.rating' %}
+  {% assign rating_sum = 0 %}
+  {% for f in rated %}{% assign rating_sum = rating_sum | plus: f.rating %}{% endfor %}
+  {% assign liked = lb.films | where: 'liked', true %}
+  {% assign rewatches = lb.films | where: 'rewatch', true %}
+  <div class="letterboxd-diary">
+    <div class="lb-controls">
+      <p class="lb-stats">
+        <span><strong>{{ lb.films.size }}</strong> recent films</span>
+        {% if rated.size > 0 %}
+          <span><strong>{{ rating_sum | divided_by: rated.size | round: 1 }}</strong> <span class="lb-star">★</span> average</span>
+        {% endif %}
+        <span><strong>{{ liked.size }}</strong> <span class="lb-heart">♥</span> liked</span>
+        <span><strong>{{ rewatches.size }}</strong> rewatches</span>
+      </p>
+      <div class="lb-filters" role="group" aria-label="Filter films">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="liked" aria-pressed="false">♥ Liked</button>
+        <button type="button" data-filter="rewatch" aria-pressed="false">↻ Rewatches</button>
+        <button type="button" data-filter="top" aria-pressed="false">★ 4+</button>
+      </div>
+    </div>
+
+    <ol class="lb-grid">
+      {% for film in lb.films %}
+        <li
+          data-index="{{ forloop.index0 }}"
+          data-liked="{{ film.liked }}"
+          data-rewatch="{{ film.rewatch }}"
+          data-top="{% if film.rating >= 4 %}true{% else %}false{% endif %}"
+        >
+          <button type="button" class="lb-tile" aria-label="{{ film.title | escape }} ({{ film.year }})">
+            <span class="lb-poster">
+              {% if film.poster %}
+                <img src="{{ film.poster }}" alt="" loading="lazy">
+              {% else %}
+                <span class="lb-poster-fallback">{{ film.title }}</span>
+              {% endif %}
+              <span class="lb-tile-caption">{{ film.title }} <span>{{ film.year }}</span></span>
+            </span>
+            <span class="lb-meta">
+              <span class="lb-star">
+                {%- if film.rating -%}
+                  {%- assign full = film.rating | floor -%}
+                  {%- for i in (1..full) -%}★{%- endfor -%}
+                  {%- assign half = film.rating | minus: full -%}
+                  {%- if half > 0 -%}½{%- endif -%}
+                {%- endif -%}
+              </span>
+              {% if film.liked %}<span class="lb-heart" title="Liked">♥</span>{% endif %}
+              {% if film.rewatch %}<span class="lb-rewatch" title="Rewatch">↻</span>{% endif %}
+            </span>
+          </button>
+        </li>
+      {% endfor %}
+    </ol>
+
+    <p class="lb-footer">
+      <a href="https://letterboxd.com/{{ lb.username }}/" target="_blank" rel="noopener">More on Letterboxd ↗</a>
+      · updated {{ lb.updated | date: '%b %-d, %Y' }}
+    </p>
+
+    <dialog class="lb-detail" aria-label="Film details">
+      <button type="button" class="lb-close" aria-label="Close">×</button>
+      <div class="lb-detail-body">
+        <img class="lb-detail-poster" alt="">
+        <div>
+          <h3 class="lb-detail-title"></h3>
+          <p class="lb-detail-rating"></p>
+          <p class="lb-detail-watched"></p>
+          <div class="lb-detail-review"></div>
+          <button type="button" class="lb-spoiler-toggle" hidden>This review may contain spoilers. Show it</button>
+          <a class="lb-detail-link" target="_blank" rel="noopener">View on Letterboxd ↗</a>
+        </div>
+      </div>
+      <div class="lb-detail-nav">
+        <button type="button" class="lb-prev" aria-label="Previous film">←</button>
+        <button type="button" class="lb-next" aria-label="Next film">→</button>
+      </div>
+    </dialog>
+  </div>
+  <script>
+    (function () {
+      var root = document.currentScript.previousElementSibling;
+      var films = {{ lb.films | jsonify }};
+      var items = Array.prototype.slice.call(root.querySelectorAll('.lb-grid > li'));
+      var dialog = root.querySelector('.lb-detail');
+      var open = -1;
+
+      function visible() {
+        return items.filter(function (li) {
+          return !li.hidden;
+        });
+      }
+      function stars(r) {
+        if (!r) return '';
+        return '★'.repeat(Math.floor(r)) + (r % 1 ? '½' : '');
+      }
+
+      root.querySelectorAll('.lb-filters button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var f = b.dataset.filter;
+          items.forEach(function (li) {
+            li.hidden = f !== 'all' && li.dataset[f] !== 'true';
+          });
+          root.querySelectorAll('.lb-filters button').forEach(function (x) {
+            x.setAttribute('aria-pressed', x === b);
+          });
+        });
+      });
+
+      function show(position) {
+        var list = visible();
+        open = (position + list.length) % list.length;
+        var film = films[Number(list[open].dataset.index)];
+        dialog.querySelector('.lb-detail-poster').src = film.poster_large || film.poster || '';
+        dialog.querySelector('.lb-detail-poster').alt = film.title + ' poster';
+        dialog.querySelector('.lb-detail-title').textContent = film.title + (film.year ? ' (' + film.year + ')' : '');
+        dialog.querySelector('.lb-detail-rating').innerHTML =
+          '<span class="lb-star"></span>' + (film.liked ? ' <span class="lb-heart">♥</span>' : '') + (film.rewatch ? ' <span class="lb-rewatch">↻ rewatch</span>' : '');
+        dialog.querySelector('.lb-detail-rating .lb-star').textContent = stars(film.rating);
+        dialog.querySelector('.lb-detail-watched').textContent = film.watched
+          ? 'Watched ' + new Date(film.watched + 'T12:00:00').toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+          : '';
+        var review = dialog.querySelector('.lb-detail-review');
+        review.innerHTML = '';
+        (film.review || '').split(/\n\n+/).forEach(function (p) {
+          if (!p) return;
+          var el = document.createElement('p');
+          el.textContent = p;
+          review.appendChild(el);
+        });
+        var toggle = dialog.querySelector('.lb-spoiler-toggle');
+        review.hidden = film.spoilers;
+        toggle.hidden = !(film.spoilers && film.review);
+        dialog.querySelector('.lb-detail-link').href = film.url;
+        if (!dialog.open) dialog.showModal();
+      }
+
+      items.forEach(function (li) {
+        li.querySelector('.lb-tile').addEventListener('click', function () {
+          show(visible().indexOf(li));
+        });
+      });
+      dialog.querySelector('.lb-spoiler-toggle').addEventListener('click', function () {
+        dialog.querySelector('.lb-detail-review').hidden = false;
+        this.hidden = true;
+      });
+      dialog.querySelector('.lb-close').addEventListener('click', function () {
+        dialog.close();
+      });
+      dialog.querySelector('.lb-prev').addEventListener('click', function () {
+        show(open - 1);
+      });
+      dialog.querySelector('.lb-next').addEventListener('click', function () {
+        show(open + 1);
+      });
+      dialog.addEventListener('click', function (e) {
+        if (e.target === dialog) dialog.close();
+      });
+      dialog.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') show(open - 1);
+        if (e.key === 'ArrowRight') show(open + 1);
+      });
+    })();
+  </script>
+{% endif %}
