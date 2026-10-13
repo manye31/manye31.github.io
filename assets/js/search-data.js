@@ -442,17 +442,26 @@ ninja.data = [{
           section: "News",},{id: "news-i-presented-the-betty-dataset-at-icra-2025",
           title: 'I presented the BETTY Dataset at ICRA 2025.',
           description: "",
+          section: "News",},{id: "news-i-successfully-defended-my-m-s-robotics-thesis-read-more-here",
+          title: 'I successfully defended my M.S. Robotics Thesis! Read more here.',
+          description: "",
+          section: "News",},{id: "news-i-started-my-phd-in-robotics-at-cmu",
+          title: 'I started my PhD in Robotics at CMU!',
+          description: "",
+          section: "News",},{id: "news-accepted-at-corl-2026-my-work-on-perception-conditioned-dynamics-models",
+          title: 'Accepted at CoRL 2026! My work on perception-conditioned dynamics models',
+          description: "",
           section: "News",},{id: "professional_service-organizer-for-undergraduate-intro-to-ros-robotics-workshop",
           title: 'Organizer for undergraduate Intro to ROS Robotics Workshop',
           description: "",
           section: "Professional_service",},{id: "professional_service-workshop-co-organizer-for-rss-2025-workshop-on-resilient-off-road-autonomous-robotics",
           title: 'Workshop Co-Organizer for RSS 2025 Workshop on Resilient Off-road Autonomous Robotics',
           description: "",
-          section: "Professional_service",},{id: "professional_service-peer-reviewer-for-ieee-icra-2025",
-          title: 'Peer Reviewer for IEEE ICRA 2025',
+          section: "Professional_service",},{id: "professional_service-workshop-organizer-for-iros-2026-workshop-on-bridging-perspectives-in-navigation",
+          title: 'Workshop Organizer for IROS 2026 Workshop on Bridging Perspectives in Navigation',
           description: "",
-          section: "Professional_service",},{id: "professional_service-peer-reviewer-for-ieee-ra-l-2025",
-          title: 'Peer Reviewer for IEEE RA-L 2025',
+          section: "Professional_service",},{id: "professional_service-peer-reviewer-for-corl-ra-l-t-ro-icra-iros-from-2024-present",
+          title: 'Peer reviewer for CoRL, RA-L, T-RO, ICRA, IROS from 2024—Present',
           description: "",
           section: "Professional_service",},{id: "projects-project-1",
           title: 'project 1',
@@ -507,6 +516,13 @@ ninja.data = [{
           window.open("mailto:%6D%69%63%61%68%6E@%61%6E%64%72%65%77.%63%6D%75.%63%6F%6D", "_blank");
         },
       },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=pkyCku8AAAAJ", "_blank");
+        },
+      },{
         id: 'social-github',
         title: 'GitHub',
         section: 'Socials',
@@ -526,13 +542,6 @@ ninja.data = [{
         section: 'Socials',
         handler: () => {
           window.open("https://orcid.org/0009-0001-7263-7401", "_blank");
-        },
-      },{
-        id: 'social-scholar',
-        title: 'Google Scholar',
-        section: 'Socials',
-        handler: () => {
-          window.open("https://scholar.google.com/citations?user=pkyCku8AAAAJ", "_blank");
         },
       },{
       id: 'light-theme',
