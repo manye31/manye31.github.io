@@ -403,9 +403,9 @@ ninja.data = [{
           description: "Supporting the Pursuit of Graduate School",
           section: "Community",handler: () => {
               window.location.href = "/community/1_reu_grad/";
-            },},{id: "community-demographic-equity",
-          title: 'Demographic Equity',
-          description: "",
+            },},{id: "community-demographic-equity-study",
+          title: 'Demographic Equity Study',
+          description: "Shedding light on where people are coming from at RI",
           section: "Community",handler: () => {
               window.location.href = "/community/2_demographic_equity/";
             },},{id: "community-robotics-summer-camp",
@@ -420,7 +420,7 @@ ninja.data = [{
               window.location.href = "/community/4_safe_summer_course/";
             },},{id: "community-build-a-bot",
           title: 'Build a Bot',
-          description: "@ Pittsburgh Hill District Community Engagement Center",
+          description: "Pittsburgh Hill District Community Engagement Center",
           section: "Community",handler: () => {
               window.location.href = "/community/5_hd_cec/";
             },},{id: "community-robolaunch",
