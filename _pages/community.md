@@ -29,9 +29,9 @@ horizontal: false
     </div>
   </div>
   {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
+  <div class="community-cards" data-card-style="minimal">
     {% for project in sorted_projects %}
-      {% include projects.liquid %}
+      {% include community_card.liquid project=project %}
     {% endfor %}
   </div>
   {% endif %}
@@ -55,9 +55,9 @@ horizontal: false
     </div>
   </div>
   {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
+  <div class="community-cards" data-card-style="minimal">
     {% for project in sorted_projects %}
-      {% include projects.liquid %}
+      {% include community_card.liquid project=project %}
     {% endfor %}
   </div>
   {% endif %}

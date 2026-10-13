@@ -4,7 +4,8 @@ title: Why REUs?
 description: Supporting the Pursuit of Graduate School
 img: assets/img/community/ed9_leaky_pipeline.png
 importance: 1
-category: work
+category: research
+wip: true # in progress: shown on the Community page but not clickable; delete this line when the page is ready
 related_publications: false
 ---
 

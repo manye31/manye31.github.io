@@ -1,0 +1,42 @@
+{% comment %}
+  One community project as a card. The look comes from the data-card-style on a surrounding .community-cards.
+  Projects with `wip: true` in their front matter show an "In progress" label and aren't clickable.
+  Usage: {% include community_card.liquid project=project %}
+{% endcomment %}
+{% assign card = include.project %}
+{% assign card_img = nil %}
+{% if card.img %}
+  {% comment %} Prefer the 800px copy the imagemagick plugin makes (some originals are several MB) {% endcomment %}
+  {% assign img_parts = card.img | split: '.' %}
+  {% assign img_ext = img_parts | last | prepend: '.' %}
+  {% assign img_stem_size = card.img | size | minus: img_ext.size %}
+  {% assign img_small = card.img | slice: 0, img_stem_size | append: '-800.webp' | prepend: '/' %}
+  {% assign card_img = card.img | prepend: '/' %}
+  {% for file in site.static_files %}
+    {% if file.path == img_small %}
+      {% assign card_img = img_small %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% if card.wip %}
+  <div class="community-card is-wip">
+{% else %}
+  <a class="community-card" href="{% if card.redirect %}{{ card.redirect }}{% else %}{{ card.url | relative_url }}{% endif %}">
+{% endif %}
+  <span class="cc-media">
+    {% if card_img %}
+      <img src="{{ card_img | relative_url }}" alt="" loading="lazy">
+    {% endif %}
+  </span>
+  <span class="cc-body">
+    {% if card.wip %}<span class="cc-eyebrow">Page Coming Soon</span>{% endif %}
+    <span class="cc-title">{{ card.title }}</span>
+    {% if card.description %}<span class="cc-desc">{{ card.description }}</span>{% endif %}
+    {% unless card.wip %}<span class="cc-more">Read more <span aria-hidden="true">→</span></span>{% endunless %}
+  </span>
+{% if card.wip %}
+  </div>
+{% else %}
+  </a>
+{% endif %}

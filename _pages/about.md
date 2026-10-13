@@ -35,3 +35,5 @@ Hello There. I am a PhD in Robotics student in the Robotics Institute at Carnegi
 I am interested in **dynamics modeling** for robot navigation---accurate models for MPC, priveleged models with RL frameworks, or models as physics simulators. I primarily explore this interest in **unstructured environments** like the off-road wilderness. I create dynamics models that are made terrain-aware through **perception conditioning** and am exploring adaptive and uncertainty-awareness for risk reduction. I'm happiest **in the field**, where the stakes and failures are real. I trust my models with my life (literally) while I ride inside our autonomous ATV and push it to the limit at 10+ m/s.
 
 While at Pitt, I worked on a separate dynamically interesting problem: adversarial planning and localization on autonomous racecars traveling 150+ mph. Our robots raced on famous F1 circuits like Monza.
+
+Outside research, I am a big cinephile, a music lover, a gamer, and a hiker. I also love collecting physical media (vinyls, movies, video games, and books). Explore the page a bit to find out more about me 🔎

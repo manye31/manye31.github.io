@@ -688,7 +688,8 @@ footer.sticky-bottom {
   }
 
   h2.category {
-    color: var(--global-divider-color);
+    color: var(--global-theme-color);
+    font-weight: 400;
     border-bottom: 1px solid var(--global-divider-color);
     padding-top: 0.5rem;
     margin-top: 2rem;
@@ -719,7 +720,8 @@ footer.sticky-bottom {
   }
 
   h2.bibliography {
-    color: var(--global-divider-color);
+    color: var(--global-theme-color);
+    font-weight: 400;
     border-top: 1px solid var(--global-divider-color);
     padding-top: 1rem;
     margin-top: 2rem;
@@ -2930,6 +2932,328 @@ details.hobby {
         text-underline-offset: 6px;
         text-decoration-thickness: 2px;
       }
+    }
+  }
+}
+
+// Community project cards (_includes/community_card.liquid). The style is chosen with data-card-style.
+.community-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 1.5rem;
+  margin: 1rem 0 2rem;
+
+  .community-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: var(--global-text-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--global-theme-color);
+      outline-offset: 3px;
+    }
+  }
+
+  .cc-media {
+    display: block;
+    overflow: hidden;
+    background-color: var(--global-divider-color);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+  }
+
+  .cc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .cc-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--global-theme-color);
+  }
+
+  .cc-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .cc-desc {
+    font-size: 0.9rem;
+    color: var(--global-text-color-light);
+  }
+
+  .cc-more {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--global-theme-color);
+
+    span {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  .community-card:hover .cc-more span {
+    transform: translateX(4px);
+  }
+
+  // Work-in-progress projects: shown, but not a link
+  .community-card.is-wip {
+    cursor: default;
+
+    // label sits on the photo's corner so titles line up with the other cards
+    .cc-eyebrow {
+      position: absolute;
+      top: 0.6rem;
+      left: 0.6rem;
+      z-index: 1;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      color: #333;
+      background-color: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .cc-media img {
+      filter: saturate(0.85);
+    }
+  }
+
+  // 1. Current look: photo strip on top of a raised card
+  &[data-card-style="classic"] {
+    .community-card {
+      border-radius: 0.25rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      transition: box-shadow 0.2s ease;
+
+      &:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    .cc-media {
+      height: 150px;
+    }
+
+    .cc-body {
+      padding: 1rem 1.25rem 1.25rem;
+    }
+
+    .cc-eyebrow,
+    .cc-more {
+      display: none;
+    }
+  }
+
+  // 2. Photo overlay: the photo fills the card, text sits on a dark fade
+  &[data-card-style="overlay"] {
+    .community-card {
+      aspect-ratio: 4 / 3;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.6);
+    }
+
+    .cc-media {
+      position: absolute;
+      inset: 0;
+    }
+
+    .cc-body {
+      position: relative;
+      margin-top: auto;
+      padding: 3rem 1.1rem 1rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+    }
+
+    .cc-eyebrow,
+    .cc-more {
+      color: #8fe3ee;
+    }
+
+    .cc-title {
+      color: #fff;
+      font-size: 1.35rem;
+    }
+
+    .cc-desc {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .community-card:hover .cc-media img {
+      transform: scale(1.06);
+    }
+  }
+
+  // 3. Side by side: photo left, text right (spans the full row)
+  &[data-card-style="side"] {
+    grid-template-columns: minmax(0, 1fr);
+
+    .community-card {
+      flex-direction: row;
+      border: 1px solid var(--global-divider-color);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+      &:hover {
+        border-color: var(--global-theme-color);
+        box-shadow: 0 10px 24px -16px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    // the photo fills its side and is cropped, so tall photos don't stretch the card
+    .cc-media {
+      position: relative;
+      flex: 0 0 38%;
+      min-height: 170px;
+
+      img {
+        position: absolute;
+        inset: 0;
+      }
+    }
+
+    .cc-body {
+      justify-content: center;
+      padding: 1.25rem 1.5rem;
+    }
+
+    @media (max-width: 575.98px) {
+      .community-card {
+        flex-direction: column;
+      }
+
+      .cc-media {
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+      }
+    }
+  }
+
+  // 4. Minimal: no box, a rounded photo and text underneath
+  &[data-card-style="minimal"] {
+    .cc-media {
+      aspect-ratio: 3 / 2;
+      border-radius: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    a.community-card:hover .cc-media img {
+      transform: scale(1.04);
+    }
+
+    a.community-card:hover .cc-title {
+      color: var(--global-theme-color);
+    }
+  }
+
+  // 5. Polaroid: white print with a thick bottom margin, slightly tilted
+  &[data-card-style="polaroid"] {
+    gap: 2rem;
+    padding: 0.5rem;
+
+    .community-card {
+      padding: 0.75rem 0.75rem 1.1rem;
+      background: #fff;
+      color: #222;
+      box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.45);
+      transform: rotate(-1.5deg);
+      transition: transform 0.25s ease;
+
+      &:nth-child(even) {
+        transform: rotate(1.5deg);
+      }
+
+      &:hover {
+        transform: rotate(0deg) scale(1.02);
+      }
+    }
+
+    .cc-media {
+      aspect-ratio: 1 / 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .cc-body {
+      align-items: center;
+      text-align: center;
+    }
+
+    .cc-title {
+      color: #222;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-style: italic;
+    }
+
+    .cc-desc {
+      color: #666;
+    }
+
+    .cc-eyebrow,
+    .cc-more {
+      display: none;
+    }
+  }
+
+  // 6. Offset frame: a teal block peeks out behind the photo
+  &[data-card-style="offset"] {
+    .cc-media {
+      position: relative;
+      aspect-ratio: 3 / 2;
+      overflow: visible;
+      background: none;
+      margin: 0 0.6rem 1.2rem 0;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0.6rem -0.6rem -0.6rem 0.6rem;
+        border-radius: 0.5rem;
+        background-color: var(--global-theme-color);
+        opacity: 0.85;
+        transition: transform 0.25s ease;
+      }
+
+      img {
+        position: absolute;
+        inset: 0;
+        border-radius: 0.5rem;
+      }
+    }
+
+    .community-card:hover .cc-media::before {
+      transform: translate(4px, 4px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .community-card,
+    .cc-media img,
+    .cc-media::before,
+    .cc-more span {
+      transition: none !important;
     }
   }
 }
