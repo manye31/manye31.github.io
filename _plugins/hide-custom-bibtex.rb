@@ -4,7 +4,7 @@ module Jekyll
 	    keywords = @context.registers[:site].config['filtered_bibtex_keywords']
 
 	    keywords.each do |keyword|
-		    input = input.gsub(/^.*\b#{keyword}\b *= *\{.*$\n/, '')
+		    input = input.gsub(/^.*\b#{Regexp.escape(keyword)}(?![\w+]) *= *\{.*$\n/, '')
 	    end
 
       # Clean superscripts in author lists

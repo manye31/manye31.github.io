@@ -2,6 +2,7 @@
 layout: post
 date: 2024-04-11
 inline: true
+emoji: 🏆
 related_posts: false
 ---
 

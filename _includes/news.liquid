@@ -1,33 +1,54 @@
 <div class="news">
   {% if site.news != blank %}
-    {% assign news_size = site.news | size %}
-    <div
-      class="table-responsive"
-      {% if include.limit and page.announcements.scrollable and news_size > 3 %}
-        style="max-height: 60vw"
-      {% endif %}
-    >
-      <table class="table table-sm table-borderless">
-        {% assign news = site.news | reverse %}
-        {% if include.limit and page.announcements.limit %}
-          {% assign news_limit = page.announcements.limit %}
-        {% else %}
-          {% assign news_limit = news_size %}
+    {% assign items = site.news | reverse %}
+    {% if include.limit and page.announcements.limit %}
+      {% assign items_limit = page.announcements.limit %}
+    {% else %}
+      {% assign items_limit = items | size %}
+    {% endif %}
+    <ul class="dated-list dated-list-with-emoji">
+      {% for item in items %}
+        <li{% if forloop.index > items_limit %} hidden{% endif %}>
+          <span class="dated-list-date">[{{ item.date | date: '%b %Y' }}]</span>
+          <span class="dated-list-emoji">{{ item.emoji | emojify }}</span>
+          <span class="dated-list-text">
+            {%- if item.inline -%}
+              {{ item.content | remove: '<p>' | remove: '</p>' | strip | emojify }}
+            {%- else -%}
+              <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            {%- endif -%}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+    {% if include.limit %}
+      {% assign items_size = items | size %}
+      <div class="more-publications-actions news-more-actions">
+        {% if items_size > items_limit %}
+          <button type="button" class="more-publications-toggle">Show more news</button>
         {% endif %}
-        {% for item in news limit: news_limit %}
-          <tr>
-            <th scope="row" style="width: 20%">{{ item.date | date: '%b %d, %Y' }}</th>
-            <td>
-              {% if item.inline %}
-                {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
-              {% else %}
-                <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-              {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
+        <a class="more-publications-all" href="{{ '/news/' | relative_url }}"{% if items_size > items_limit %} hidden{% endif %}>See all news →</a>
+      </div>
+      <script>
+        (function () {
+          var root = document.currentScript.parentElement;
+          var button = root.querySelector('.news-more-actions .more-publications-toggle');
+          var allLink = root.querySelector('.news-more-actions .more-publications-all');
+          if (!button) return;
+          var step = 3;
+          button.addEventListener('click', function () {
+            var hidden = root.querySelectorAll('.dated-list > li[hidden]');
+            for (var i = 0; i < Math.min(step, hidden.length); i++) hidden[i].hidden = false;
+            if (hidden.length <= step) {
+              button.hidden = true;
+              allLink.hidden = false;
+            }
+            // The page got taller; let the scroll progress bar recompute its length
+            window.dispatchEvent(new Event('resize'));
+          });
+        })();
+      </script>
+    {% endif %}
   {% else %}
     <p>No news so far...</p>
   {% endif %}

@@ -17,7 +17,175 @@ layout: default
   <article>
     {% if page.profile %}
       <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
-        {% if page.profile.image %}
+        {% if page.profile.image_folder %}
+          {% comment %}
+            Rotating profile photo: every image in assets/img/<image_folder>/ is a candidate. Each visitor sees them in a
+            random order with no repeats until all have been shown. The page always opens on the first photo (alphabetically),
+            then cross-fades to the next one every 5 seconds and on click.
+          {% endcomment %}
+          {% assign rotation_dir = page.profile.image_folder | prepend: '/assets/img/' | append: '/' %}
+          {% assign rotation_exts = '.jpg,.jpeg,.png,.gif,.webp' | split: ',' %}
+          {% assign rotation_images = '' | split: '' %}
+          {% assign rotation_resized = '' | split: '' %}
+          {% for file in site.static_files %}
+            {% assign file_ext = file.extname | downcase %}
+            {% if file.path contains rotation_dir and rotation_exts contains file_ext %}
+              {% comment %} Skip the -480/-800/-1400 copies the imagemagick plugin makes {% endcomment %}
+              {% assign is_resized_copy = false %}
+              {% for width in site.imagemagick.widths %}
+                {% assign width_suffix = width | prepend: '-' %}
+                {% if file.basename contains width_suffix %}
+                  {% assign suffix_size = width_suffix | size %}
+                  {% assign suffix_start = file.basename | size | minus: suffix_size %}
+                  {% assign file_suffix = file.basename | slice: suffix_start, suffix_size %}
+                  {% if file_suffix == width_suffix %}
+                    {% assign is_resized_copy = true %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% if is_resized_copy %}
+                {% assign rotation_resized = rotation_resized | push: file.path %}
+              {% else %}
+                {% assign rotation_images = rotation_images | push: file.path %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% assign rotation_images = rotation_images | sort %}
+          {% comment %} Show the 800px copy the imagemagick plugin makes (much smaller than phone originals) when it exists {% endcomment %}
+          {% assign rotation_display = '' | split: '' %}
+          {% for path in rotation_images %}
+            {% assign path_parts = path | split: '.' %}
+            {% assign path_ext = path_parts | last | prepend: '.' %}
+            {% assign path_stem_size = path | size | minus: path_ext.size %}
+            {% assign resized_path = path | slice: 0, path_stem_size | append: '-800.webp' %}
+            {% if rotation_resized contains resized_path %}
+              {% assign rotation_display = rotation_display | push: resized_path %}
+            {% else %}
+              {% assign rotation_display = rotation_display | push: path %}
+            {% endif %}
+          {% endfor %}
+          {% if page.profile.image_circular %}
+            {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
+          {% else %}
+            {% assign profile_image_class = 'img-fluid z-depth-1 rounded' %}
+          {% endif %}
+          <figure class="profile-rotation">
+            <img
+              class="{{ profile_image_class }}"
+              src="{{ rotation_display.first | relative_url }}"
+              alt="Photo of {{ site.first_name }} {{ site.last_name }}"
+              width="480"
+              height="480"
+            >
+          </figure>
+          <script>
+            (function () {
+              var images = {{ rotation_display | jsonify }}.map(function (path) {
+                return '{{ site.baseurl }}' + encodeURI(path);
+              });
+              var figure = document.currentScript.previousElementSibling;
+              var INTERVAL = 5000; // ms between automatic switches
+              var FADE = 900; // ms, keep in sync with the CSS transition
+              if (images.length < 2) return;
+
+              // Always start on the first photo (alphabetically). After that, a shuffle bag:
+              // random order, no repeats until every photo has been shown, never the same photo twice in a row.
+              var current = images[0];
+              var bag = [];
+              function shuffle(list) {
+                for (var i = list.length - 1; i > 0; i--) {
+                  var j = Math.floor(Math.random() * (i + 1));
+                  var t = list[i];
+                  list[i] = list[j];
+                  list[j] = t;
+                }
+                return list;
+              }
+              function refill() {
+                if (bag.length === 0) {
+                  bag = shuffle(
+                    images.filter(function (p) {
+                      return p !== current;
+                    })
+                  );
+                  // Each round covers every photo; the one on screen goes last so it isn't repeated right away
+                  bag.push(current);
+                }
+              }
+              function next() {
+                refill();
+                current = bag.shift();
+                return current;
+              }
+
+              // Decode the upcoming photo ahead of time so a switch (especially a click) starts instantly
+              var decoded = {};
+              function preloadUpcoming() {
+                refill();
+                var src = bag[0];
+                if (decoded[src]) return;
+                var img = new Image();
+                img.src = src;
+                decoded[src] = img.decode ? img.decode().catch(function () {}) : Promise.resolve();
+              }
+
+              // Cross-fade: a fresh image is decoded first, then fades in over the current one, which is removed afterwards.
+              // A click during a fade snaps that fade to its end and starts the next one right away.
+              var request = 0;
+              var fading = null;
+              var fadeTimer = null;
+              var timer = null;
+              function finishFade() {
+                if (!fading) return;
+                clearTimeout(fadeTimer);
+                fading.classList.add('no-transition');
+                fading.classList.remove('profile-rotation-incoming', 'is-visible');
+                figure.querySelectorAll('img').forEach(function (img) {
+                  if (img !== fading) img.remove();
+                });
+                void fading.offsetWidth;
+                fading.classList.remove('no-transition');
+                fading = null;
+              }
+              function crossfade() {
+                finishFade();
+                var mine = ++request;
+                var src = next();
+                var incoming = figure.querySelector('img').cloneNode(false);
+                incoming.className = incoming.className.replace(/\s*(profile-rotation-incoming|is-visible|no-transition)/g, '');
+                incoming.classList.add('profile-rotation-incoming');
+                incoming.src = src;
+                var ready = decoded[src] || (incoming.decode ? incoming.decode() : Promise.resolve());
+                delete decoded[src];
+                ready
+                  .catch(function () {})
+                  .then(function () {
+                    if (mine !== request) return; // a newer click took over while this photo was loading
+                    finishFade();
+                    figure.appendChild(incoming);
+                    void incoming.offsetWidth;
+                    incoming.classList.add('is-visible');
+                    fading = incoming;
+                    fadeTimer = setTimeout(finishFade, FADE + 50);
+                    preloadUpcoming();
+                  });
+              }
+              function restartTimer() {
+                clearInterval(timer);
+                timer = setInterval(function () {
+                  if (!document.hidden) crossfade();
+                }, INTERVAL);
+              }
+
+              figure.addEventListener('click', function () {
+                crossfade();
+                restartTimer();
+              });
+              preloadUpcoming();
+              restartTimer();
+            })();
+          </script>
+        {% elsif page.profile.image %}
           {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
           {% if page.profile.image_circular %}
             {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
@@ -42,42 +210,52 @@ layout: default
 
     <!-- News -->
     {% if page.announcements and page.announcements.enabled %}
-      <h2>
+      <section class="about-section">
+      <h2 class="section-heading">
         <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
       </h2>
       {% include news.liquid limit=true %}
+      </section>
     {% endif %}
 
     <!-- Latest posts -->
     {% if page.latest_posts and page.latest_posts.enabled %}
-      <h2>
+      <section class="about-section">
+      <h2 class="section-heading">
         <a href="{{ '/blog/' | relative_url }}" style="color: inherit">Latest Posts</a>
       </h2>
       {% include latest_posts.liquid %}
+      </section>
     {% endif %}
 
     <!-- Selected papers -->
     {% if page.selected_papers %}
-      <h2>
+      <section class="about-section">
+      <h2 class="section-heading">
         <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Selected Publications</a>
       </h2>
       {% include selected_papers.liquid %}
+      </section>
     {% endif %}
 
     <!-- Selected community service -->
     {% if page.selected_community_service %}
-      <h2>
+      <section class="about-section">
+      <h2 class="section-heading">
         <a href="{{ '/community/' | relative_url }}" style="color: inherit">Selected Community Engagement</a>
       </h2>
       {% include selected_community_service.liquid %}
+      </section>
     {% endif %}
 
     <!-- Professional service -->
     {% if page.professional_service and page.professional_service.enabled %}
-      <h2>
+      <section class="about-section">
+      <h2 class="section-heading">
         <a href="{{ '/professional_service/' | relative_url }}" style="color: inherit">Professional Service</a>
       </h2>
       {% include professional_service.liquid limit=true %}
+      </section>
     {% endif %}
 
     <!-- Social -->

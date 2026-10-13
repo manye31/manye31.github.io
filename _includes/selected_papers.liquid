@@ -1,3 +1,46 @@
-<div class="publications">
+<div class="publications selected-publications">
   {% bibliography --group_by none --query @*[selected=true]* %}
+
+  {% comment %} Everything else, newest first, revealed a few at a time by the "Show more" button {% endcomment %}
+  <div class="more-publications" hidden>
+    {% bibliography --group_by none --query @*[selected!=true]* %}
+  </div>
+  <div class="more-publications-actions">
+    <button type="button" class="more-publications-toggle">Show more publications</button>
+    <a class="more-publications-all" href="{{ '/publications/' | relative_url }}" hidden>See all publications →</a>
+  </div>
 </div>
+
+<script>
+  (function () {
+    var root = document.currentScript.previousElementSibling;
+    var more = root.querySelector('.more-publications');
+    var button = root.querySelector('.more-publications-toggle');
+    var allLink = root.querySelector('.more-publications-all');
+    var entries = more.querySelectorAll('ol.bibliography > li');
+    var step = 3;
+    var shown = 0;
+
+    entries.forEach(function (li) {
+      li.hidden = true;
+    });
+    if (entries.length === 0) {
+      button.hidden = true;
+      allLink.hidden = false;
+    }
+
+    button.addEventListener('click', function () {
+      more.hidden = false;
+      for (var i = shown; i < Math.min(shown + step, entries.length); i++) {
+        entries[i].hidden = false;
+      }
+      shown = Math.min(shown + step, entries.length);
+      if (shown >= entries.length) {
+        button.hidden = true;
+        allLink.hidden = false;
+      }
+      // The page got taller; let the scroll progress bar recompute its length
+      window.dispatchEvent(new Event('resize'));
+    });
+  })();
+</script>

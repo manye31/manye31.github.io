@@ -217,7 +217,7 @@ ul.task-list input[type="checkbox"] {
 
 @media (min-width: 576px) {
   .profile {
-    width: 30%;
+    width: 36%;
 
     .address {
       p {
@@ -247,7 +247,6 @@ ul.task-list input[type="checkbox"] {
   box-shadow: none;
   border-bottom: 1px solid var(--global-divider-color);
   background-color: var(--global-bg-color);
-  opacity: 0.95;
 }
 
 .navbar .dropdown-menu {
@@ -735,30 +734,46 @@ footer.sticky-bottom {
     li {
       margin-bottom: 1rem;
 
-      .preview {
-      }
+      // Wide side media: GIF/image on the left, venue badge pinned to its corner
+      .pub-media {
+        position: relative;
+        z-index: 0; // keeps previews under the sticky section headings
+        aspect-ratio: 16 / 10;
+        border-radius: 0.375rem;
+        overflow: hidden;
+        background-color: var(--global-code-bg-color);
+        box-shadow: 0 6px 18px -10px rgba(0, 0, 0, 0.45);
+        margin-bottom: 1rem;
 
-      .abbr {
-        margin-bottom: 0.5rem;
-
-        abbr {
-          display: inline-block;
-          background-color: var(--global-theme-color);
-          margin-bottom: 0.5rem;
-          color: var(--global-card-bg-color) !important;
-
-          a {
-            color: white;
-
-            &:hover {
-              text-decoration: none;
-            }
-          }
+        figure,
+        picture {
+          margin: 0;
+          width: 100%;
+          height: 100%;
         }
 
-        .award {
-          color: var(--global-theme-color) !important;
-          border: 1px solid var(--global-theme-color);
+        img.preview,
+        video.preview {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .pub-media-empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: none;
+        border: 1px dashed var(--global-divider-color);
+        background-color: transparent;
+      }
+
+      // On phones an empty media box is hidden
+      @media (max-width: 575.98px) {
+        .pub-media-empty {
+          display: none;
         }
       }
 
@@ -794,20 +809,64 @@ footer.sticky-bottom {
       }
 
       .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+
         a.btn {
+          margin: 0;
+          box-shadow: none;
+          text-transform: none;
+          transition: all 0.15s ease;
+        }
+
+        // Keycaps: monospace keyboard keys that press down on hover
+        &.links-keycaps a.btn {
+          font-family: "Roboto Mono", ui-monospace, Menlo, monospace;
+          font-size: 0.74rem;
+          font-weight: 500;
+          line-height: 1;
           color: var(--global-text-color);
-          border: 1px solid var(--global-text-color);
-          padding-left: 1rem;
-          padding-right: 1rem;
-          padding-top: 0.25rem;
-          padding-bottom: 0.25rem;
-          margin-left: 0;
+          background-color: var(--global-card-bg-color);
+          border: 1px solid var(--global-divider-color);
+          border-bottom-width: 3px;
+          border-radius: 5px;
+          padding: 0.4rem 0.6rem 0.35rem;
+
+          i {
+            font-size: 0.85em;
+            margin-right: 0.15rem;
+          }
 
           &:hover {
-            color: var(--global-theme-color);
-            border-color: var(--global-theme-color);
+            color: var(--global-bg-color);
+            background-color: var(--global-theme-color);
+            border-color: color-mix(in srgb, var(--global-theme-color) 70%, black);
+            transform: translateY(1px);
+            border-bottom-width: 2px;
+            margin-bottom: 1px;
           }
         }
+
+        // Pills: tinted capsules that fill solid on hover
+        &.links-pills a.btn {
+          font-size: 0.78rem;
+          font-weight: 500;
+          line-height: 1;
+          color: var(--global-theme-color);
+          background-color: color-mix(in srgb, var(--global-theme-color) 12%, transparent);
+          border: 0;
+          border-radius: 999px;
+          padding: 0.4rem 0.8rem;
+
+          &:hover {
+            color: white;
+            background-color: var(--global-theme-color);
+          }
+        }
+
         a.award.btn {
           border-color: var(--global-highlight-color);
         }
@@ -943,7 +1002,7 @@ progress {
   position: fixed;
   left: 0;
   top: 56px;
-  z-index: 10;
+  z-index: 1031; // above the navbar and the sticky section headings
 
   /* Dimensions */
   width: 100%;
@@ -1468,5 +1527,218 @@ figure.cover {
   /* mouse over link */
   a.cover-link:hover {
     color: #23212d !important;
+  }
+}
+
+// Publication previews: a bit larger than Bootstrap's 5/7 split; selected papers on the about page use a smaller preview
+@media (min-width: 576px) {
+  .publications .pub-entry {
+    .pub-media-col {
+      flex: 0 0 45%;
+      max-width: 45%;
+    }
+
+    .pub-text {
+      flex: 0 0 55%;
+      max-width: 55%;
+    }
+  }
+
+  .selected-publications .pub-entry {
+    .pub-media-col {
+      flex: 0 0 32%;
+      max-width: 32%;
+    }
+
+    .pub-text {
+      flex: 0 0 68%;
+      max-width: 68%;
+    }
+  }
+}
+
+// Narrow screens (large phones sideways, small tablets): give photos even more room
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .profile {
+    width: 44%;
+  }
+
+  .publications .pub-entry,
+  .selected-publications .pub-entry {
+    .pub-media-col {
+      flex: 0 0 48%;
+      max-width: 48%;
+    }
+
+    .pub-text {
+      flex: 0 0 52%;
+      max-width: 52%;
+    }
+  }
+}
+
+// News and professional service: one plain line per entry, "[Mon YYYY] Entry"
+.dated-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+
+  // Fixed date (and emoji) columns so every entry's text starts at the same spot
+  li {
+    display: grid;
+    grid-template-columns: 5.75em minmax(0, 1fr);
+    column-gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &.dated-list-with-emoji li {
+    grid-template-columns: 5.75em 1.5em minmax(0, 1fr);
+  }
+
+  .dated-list-date {
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .dated-list-emoji {
+    text-align: center;
+  }
+
+  li.dated-list-undated {
+    display: block;
+  }
+}
+
+// Site typeface: Source Serif 4 everywhere (keycaps keep Roboto Mono)
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar,
+.btn,
+.badge,
+.tooltip,
+.popover {
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+
+body {
+  font-weight: 400;
+}
+
+// **bold** in markdown: real bold, matching the "Micah" in the page title (the theme default of 500 barely shows in this serif)
+b,
+strong {
+  font-weight: 700;
+}
+
+// Community pages (and the community cards on the about page) keep the original Roboto font
+.community-page,
+.community {
+  &,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .btn,
+  .badge {
+    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  & {
+    font-weight: 300;
+  }
+}
+
+// About page section headings: a thin rule runs from the heading to the right edge
+h2.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  // Stays pinned under the navbar while its section is on screen
+  position: sticky;
+  top: 56px;
+  z-index: 10;
+  background-color: var(--global-bg-color);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--global-divider-color);
+  }
+}
+
+// "Show more publications" under the selected papers on the about page
+.more-publications-actions {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+
+  .more-publications-toggle {
+    background: none;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 999px;
+    color: var(--global-theme-color);
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--global-theme-color);
+    }
+  }
+
+  .more-publications-all {
+    font-size: 0.95rem;
+  }
+}
+
+// Rotating profile photo (about page): two stacked images cross-fade so the background never shows
+// Every photo fills the same square frame (cropped, never stretched), so any size or shape works and the page never jumps
+.profile-rotation {
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+  aspect-ratio: 1 / 1;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 30%; // keep faces in frame when a tall photo is cropped
+  }
+
+  .profile-rotation-incoming {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    box-shadow: none;
+    transition: opacity 0.9s ease-in-out;
+
+    &.is-visible {
+      opacity: 1;
+    }
+  }
+
+  .no-transition {
+    transition: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .profile-rotation-incoming {
+      transition: none;
+    }
   }
 }

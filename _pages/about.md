@@ -7,6 +7,7 @@ subtitle: # <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
 profile:
   align: right
   image: micah_nye_rales.png
+  image_folder: profile_rotation # rotate through every image in assets/img/profile_rotation/ (remove this line to use `image` only)
   image_circular: false # crops the image to make it circular
   more_info:
 
@@ -29,9 +30,8 @@ latest_posts:
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
+Hello There. I am a PhD in Robotics student in the Robotics Institute at Carnegie Mellon Univeristy with Profs. [Wenshan Wang](http://www.wangwenshan.com/) and [Sebastian Scherer](https://theairlab.org/team/sebastian/) in the [AirLab](https://theairlab.org/). I previously completed my MS in Robotics at CMU RI as an Inaugural [Rales Fellow](https://www.cmu.edu/graduate/rales-fellows/). Prior to joining CMU, I graduated from the University of Pittsburgh with a B.S. in Mechanical Engineering.
 
-Hi, I'm Micah! I am a Masters in Robotics Student at Carnegie Mellon Univeristy with Profs. [Sebastian Scherer](https://theairlab.org/team/sebastian/) and [Wenshan Wang](http://www.wangwenshan.com/) in the AirLab in the [Off-road Autonomy Group](https://theairlab.org/offroad/).
+I am interested in **dynamics modeling** for robot navigation---accurate models for MPC, priveleged models with RL frameworks, or models as physics simulators. I primarily explore this interest in **unstructured environments** like the off-road wilderness. I create dynamics models that are made terrain-aware through **perception conditioning** and am exploring adaptive and uncertainty-awareness for risk reduction. I'm happiest **in the field**, where the stakes and failures are real. I trust my models with my life (literally) while I ride inside our autonomous ATV and push it to the limit at 10+ m/s.
 
-My research interest is in the intersection of **field robotics**, **controls**, and **machine learning** to develop **robots that can continuously learn** in new scenarios by reasoning about **environment contexts and uncertainty**. Developing such robots will help robots navigate severe, challenging environments with precision and an acute understanding of where it is navigating. I am most recently working on autonomous off-road robots.
-
-Prior to this, I led an autonomous racing team, MIT-PITT-RW, where I developed adversarial path planners to overtake opponents at 155+ mph. We competed in competitions across the globe, at famous F1 circuits like Monza.
+While at Pitt, I worked on a separate dynamically interesting problem: adversarial planning and localization on autonomous racecars traveling 150+ mph. Our robots raced on famous F1 circuits like Monza.

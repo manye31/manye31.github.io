@@ -1,101 +1,141 @@
 ---
 ---
 
-% Example shorthand
-% @string{aps = {American Physical Society,}}
+% Publications, shared by the CV and the website.
+% Keep this file identical in both places.
+%
+% CV: which section an entry lands in:
+%   @inproceedings                     -> Conference  [C#]
+%   @article                           -> Journal     [J#]
+%   any type with keywords={workshop}  -> Workshop    [W#]
+%
+% Link fields (all optional; each one only shows up if you fill it in):
+%   url = paper, website, video, code, poster
+%   (website: an arxiv.org url or eprint becomes the arXiv button, any other url the Paper button)
+%
+% Equal contribution: add  author+an = {1=equal; 2=equal}  (numbers = author positions)
+% Not yet accepted:   booktitle = {In Submission}
+%
+% Website-only fields (the CV ignores them):
+%   preview     = thumbnail in assets/img/publication_preview/
+%   selected    = {true} to show on the about page
+%   bibtex_show = {true} to show the Bib button
+%
+% Entries are sorted newest first within each section.
 
-@INPROCEEDINGS{burcin2026quantitative,
-  abbr={EDUNINE},
-  bibtex_show={true},
-  annotation={† Equal Contribution},
-  preview={cra_riss.png},
-  in_submission={true},
-
-  author = {Burcin, Rachel and Nye†, Micah and Mruthyunjaya†, Vishwas and Adu, Isaiah and Dolan, John  M.},
-  booktitle = {2026 IEEE World Engineering Education Conference (EDUNINE)},
-  title = {A Quantitative Analysis of Undergraduate Researchers' Intent to Apply to Graduate School},
-  year = {2026},
+@inproceedings{nye2026td3,
+  title     = {TartanDrive 3: Scaling Full-Stack Data Across Modalities, Behaviors, and Extreme Environments},
+  author    = {Nye, Micah and Sivaprakasam, Matthew and Sharma, Saksham and Hemkumar, Geethika and Triest, Samuel and Zhao, Zhipeng and Liu, Yifei and Maheshwari, Parv and Yanovich, Anton and Atha, Deegan and Wang, Wenshan and Scherer, Sebastian},
+  author+an = {1=equal; 2=equal},
+  booktitle = {In Submission},
+  year      = {2026},
+  month     = {12},
+  preview   = {tbd_td3.mp4},
 }
 
-@INPROCEEDINGS{nye2025betty,
-  abbr={ICRA},
-  bibtex_show={true},
-  website={https://pitt-mit-iac.github.io/betty-dataset/},
-  arxiv={2505.07266v1},
-  preview={betty.gif},
-  selected={true},
-
-  author={Nye, Micah and Raji, Ayoub and Saba, Andrew and Erlich, Eidan and Exley, Robert and Goyal, Aragya and Matros, Alexander and Misra, Ritesh and Sivaprakasam, Matthew and Bertogna, Marko and Ramanan, Deva and Scherer, Sebastian},
-  booktitle={2025 IEEE International Conference on Robotics and Automation (ICRA)}, 
-  title={BETTY Dataset: A Multi-Modal Dataset for Full-Stack Autonomy}, 
-  year={2025},
-  volume={},
-  number={},
-  pages={2453-2460},
-  keywords={Training;Heuristic algorithms;Dynamics;Predictive models;Tires;Stability analysis;Vehicle dynamics;Forecasting;State estimation;Thermal stability},
-  doi={10.1109/ICRA55743.2025.11127350}
+@inproceedings{nye2026struc,
+  title     = {Structured Perception Representations for Off-road Dynamics Learning},
+  author    = {Nye, Micah and Triest, Samuel and Sivaprakasam, Matthew and Adu, Isaiah and Scherer, Sebastian and Wang, Wenshan},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  year      = {2026},
+  month     = {11},
+  selected  = {true},
+  bibtex_show = {true},
+  preview   = {corl26_spatialbev_dynamics.png},
 }
 
-@INPROCEEDINGS{sivaprakasam2024tartandrive,
-  abbr={ICRA},
-  bibtex_show={true},
-  website={https://theairlab.org/TartanDrive2/},
-  arxiv={2402.01913},
-  code={https://github.com/castacks/tartan_drive_2.0},
-  preview={tartandrive2.gif},
-  selected={true},
-
-  author={Sivaprakasam, Matthew and Maheshwari, Parv and Castro, Mateo Guaman and Triest, Samuel and Nye, Micah and Willits, Steve and Saba, Andrew and Wang, Wenshan and Scherer, Sebastian},
-  booktitle={2024 IEEE International Conference on Robotics and Automation (ICRA)}, 
-  title={TartanDrive 2.0: More Modalities and Better Infrastructure to Further Self-Supervised Learning Research in Off-Road Driving Tasks}, 
-  year={2024},
-  volume={},
-  number={},
-  pages={12606-12606},
-  keywords={Representation learning;Laser radar;Propioception;Self-supervised learning;Reinforcement learning;Metadata;Sensors},
-  doi={10.1109/ICRA57147.2024.10611265},
+@inproceedings{sivaprakasam2026distilling,
+  title         = {Distilling Global Traversability Priors for Image-based Affordance Prediction in Off-road Environments},
+  author        = {Sivaprakasam, Matthew and Triest, Samuel and Nye, Micah and Atha, Deegan and Khattak, Shehryar and Fan, David and Wang, Wenshan and Scherer, Sebastian},
+  booktitle     = {IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year          = {2026},
+  month         = {9},
+  eprint        = {2607.17984},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2607.17984},
+  website       = {https://theairlab.org/ss_frontiers_iros/},
+  video         = {https://drive.google.com/file/u/1/d/1nMTh8xaU4cl1gyVGda8aWJpfmJ53GKwO/view?usp=sharing},
+  bibtex_show   = {true},
+  preview   = {iros26_lrnah.png},
 }
 
-@ARTICLE{saba2024mprwjournal,
-  abbr={JFR},
-  bibtex_show={true},
-  arxiv={2408.15425},
-  preview={mprw_jfr.gif},
-
-  author={Saba, Andrew and Adetunji, Aderotimi and Johnson, Adam and Kothari, Aadi and Sivaprakasam, Matthew and Spisak, Joshua and Bharatia, Prem and Chauhan, Arjun and Duff, Brendan and Gasparro, Noah and King, Charles and Larkin, Ryan and Mao, Brian and Nye, Micah and Parashar, Anjali and Attias, Joseph and Balciunas, Aurimas and Brown, Austin and Chang, Chris and Gao, Ming and Heredia, Cindy and Keats, Andrew and Lavariega, Jose and Muckelroy, William and Slavescu, Andre and Stathas, Nickolas and Suvarna, Nayana and Zhang, Chuan Tian and Scherer, Sebastian and Ramanan, Deva},
-  journal={Field Robotics}, 
-  title={Fast and Modular Autonomy Software for Autonomous Racing Vehicles}, 
-  year={2024},
-  volume={4},
-  number={},
-  pages={1-45},
-  keywords={Sensors;Vehicle dynamics;Software packages;Navigation;Roads;Autonomous vehicles;Aerodynamics;Uncertainty;Trajectory;Computer vision;Sports;computer vision;navigation;perception;autonomous racing;control},
-  doi={10.55417/fr.2024001}
-}
-@inproceedings{nye2023learning,
-  abbr={RISS},
-  bibtex_show={true},
-  pdf={https://drive.google.com/file/d/1ZlZ-vXaElgNgiJP2SVWEBw89i3ssk5hl/view?pli=1},
-  poster={https://drive.google.com/file/d/1BV0RtdPudq-e1nQRWcNLhgLGfc4f5Ssz/view},
-  video={https://drive.google.com/file/d/1sTs1Gh3nu1cCpbCEAMMTrLBZrW8rRSAG/view},
-  preview={riss_trajopt.gif},
-
-  author = {Nye, Micah and Corah, Micah and Scherer, Sebastian},
-  booktitle = {Robotics Institute of Summer Scholars Working Papers Journal},
-  title = {Learning Collision-Free Navigation for Aerial Vehicles in Complex Environments},
-  year = {2023},
-  volume={11}
+@inproceedings{nye2026weec,
+  title     = {A Quantitative Analysis of Undergraduate Researchers' Intent to Apply to Graduate School},
+  author    = {Burcin, R. and Nye, Micah and Adu, I. and Mruthyunjaya, V. and Dolan, J. M.},
+  booktitle = {IEEE World Engineering Education Conference (EDUNINE)},
+  year      = {2026},
+  month     = {3},
+  url       = {https://ieeexplore.ieee.org/abstract/document/11546908},
+  preview   = {cra_riss.png},
+  bibtex_show = {true},
 }
 
-@inproceedings{sivaprakasam2023tartandrive,
-  abbr={ICRA PT4R},
-  bibtex_show={true},
-  pdf={https://openreview.net/pdf?id=7Y1pnhFJUT},
-  preview={tartandrive2.gif},
+@inproceedings{nye2025betty,
+  title     = {{BETTY} Dataset: A Multi-modal Dataset for Full-Stack Autonomy},
+  author    = {Nye, Micah and Raji, A. and Saba, Andrew and Erlich, E. and Exley, R. and Goyal, A. and Matros, A. and Misra, R. and Sivaprakasam, Matthew and Bertogna, M. and Ramanan, Deva and Scherer, Sebastian},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2025},
+  pages     = {2453--2460},
+  doi       = {10.1109/ICRA55743.2025.11127350},
+  url       = {https://arxiv.org/abs/2505.07266v1},
+  website   = {https://pitt-mit-iac.github.io/betty-dataset/},
+  preview   = {betty.gif},
+  selected  = {true},
+  bibtex_show = {true},
+}
 
-  title={TartanDrive 1.5: Improving Large Multimodal Robotics Dataset Collection and Distribution},
-  author={Matthew Sivaprakasam and Samuel Triest and Mateo Guaman Castro and Micah Nye and Mukhtar Maulimov and Cherie Ho and Parv Maheshwari and Wenshan Wang and Sebastian Scherer},
-  booktitle={ICRA2023 Workshop on Pretraining for Robotics (PT4R)},
-  year={2023},
-  url={https://openreview.net/forum?id=7Y1pnhFJUT}
+@inproceedings{sivaprakasam2024tartandrive2,
+  title     = {{TartanDrive} 2.0: More Modalities and Better Infrastructure to Further Self-Supervised Learning Research in Off-Road Driving Tasks},
+  author    = {Sivaprakasam, Matthew and Maheshwari, Parv and Castro, Mateo Guaman and Triest, Samuel and Nye, Micah and Willits, S. and Saba, Andrew and Wang, Wenshan and Scherer, Sebastian},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2024},
+  pages     = {12606},
+  doi       = {10.1109/ICRA57147.2024.10611265},
+  url       = {https://theairlab.org/TartanDrive2/assets/TartanDrive_2_0_ICRA_2024.pdf},
+  website   = {https://theairlab.org/TartanDrive2/},
+  video     = {https://drive.google.com/file/d/1J-KePd_W2gOLecS1YwolOlKhKFw3ANbF/view},
+  code      = {https://github.com/castacks/tartan_drive_2.0},
+  arxiv     = {2402.01913},
+  preview   = {tartandrive2.gif},
+  bibtex_show = {true},
+}
+
+@article{saba2024racing,
+  title        = {Fast and Modular Autonomy Software for Autonomous Racing Vehicles},
+  author       = {Saba, Andrew and Adetunji, Aderotimi and Johnson, Adam and Kothari, Aadi and Sivaprakasam, Matthew and Spisak, Joshua and Bharatia, Prem and Chauhan, Arjun and Duff, Jr., Brendan and Gasparro, Noah and King, Charles and Larkin, Ryan and Mao, Brian and Nye, Micah and Parashar, Anjali and Attias, Joseph and Balciumas, Aurimas and Brown, Austin and Chang, Chris and Gao, Ming and Heredia, Cindy and Keats, Andrew and Lavariega, Jose and Muckleroy, III, William and Slavescu, Andre and Stathas, Nicholas and Suvarna, Nayana and Zhang, Cin Tuan and Scherer, Sebastian and Ramanan, Deva},
+  journaltitle = {Field Robotics},
+  volume       = {4},
+  pages        = {1--45},
+  year         = {2024},
+  doi          = {10.55417/fr.2024001},
+  note         = {now retitled as IEEE Transactions on Field Robotics},
+  url          = {https://ieeexplore.ieee.org/document/10876003},
+  arxiv        = {2408.15425},
+  preview      = {mprw_jfr.gif},
+  bibtex_show  = {true},
+}
+
+@article{nye2023riss,
+  title        = {Simulation and Control for Learning Collision-free Navigation for Aerial Vehicles},
+  author       = {Nye, Micah and Corah, Micah and Scherer, Sebastian},
+  journaltitle = {Robotics Institute of Summer Scholars Working Papers Journal},
+  volume       = {11},
+  year         = {2023},
+  url          = {https://drive.google.com/file/d/1ZlZ-vXaElgNgiJP2SVWEBw89i3ssk5hl/view?usp=share_link},
+  poster       = {https://drive.google.com/file/d/1BV0RtdPudq-e1nQRWcNLhgLGfc4f5Ssz/view?usp=share_link},
+  video        = {https://drive.google.com/file/d/1sTs1Gh3nu1cCpbCEAMMTrLBZrW8rRSAG/view?usp=share_link},
+  preview      = {riss_trajopt.gif},
+  bibtex_show  = {true},
+}
+
+@inproceedings{sivaprakasam2023tartandrive15,
+  title     = {{TartanDrive} 1.5: Improving Large Multimodal Robotics Dataset Collection and Distribution},
+  author    = {Sivaprakasam, Matthew and Triest, Samuel and Castro, Mateo Guaman and Nye, Micah and Maulimov, Mukhtar and Ho, Cherie and Maheshwari, Parv and Wang, Wenshan and Scherer, Sebastian},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA) Workshop on Pretraining for Robotics (PT4R)},
+  year      = {2023},
+  keywords  = {workshop},
+  url       = {https://openreview.net/forum?id=7Y1pnhFJUT},
+  preview   = {tartandrive2.gif},
+  bibtex_show = {true},
 }

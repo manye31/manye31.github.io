@@ -311,6 +311,7 @@ filtered_bibtex_keywords:
     altmetric,
     annotation,
     arxiv,
+    author+an,
     award,
     award_name,
     bibtex_show,
@@ -332,6 +333,9 @@ filtered_bibtex_keywords:
 # Maximum number of authors to be shown for each publication (more authors are visible on click)
 max_author_limit: 3 # leave blank to always show all authors
 more_authors_animation_delay: 10 # more authors are revealed on click using animation; smaller delay means faster animation
+
+# Look of the link buttons under each publication: keycaps or pills
+publication_button_style: keycaps
 
 # Enables publication thumbnails. If disabled, none of the publications will display thumbnails, even if specified in the bib entry.
 enable_publication_thumbnails: true
@@ -447,7 +451,7 @@ third_party_libraries:
     version: "5.5.0"
   google_fonts:
     url:
-      fonts: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&display=swap"
+      fonts: "https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&family=Material+Icons&display=swap"
   highlightjs:
     integrity:
       css:

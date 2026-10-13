@@ -1,33 +1,32 @@
 <div class="news">
   {% if site.professional_service != blank %}
-    {% assign professional_service_size = site.professional_service | size %}
-    <div
-      class="table-responsive"
-      {% if include.limit and page.professional_service.scrollable and professional_service_size > 3 %}
-        style="max-height: 60vw"
-      {% endif %}
-    >
-      <table class="table table-sm table-borderless">
-        {% assign professional_service = site.professional_service | reverse %}
-        {% if include.limit and page.professional_service.limit %}
-          {% assign professional_service_limit = page.professional_service.limit %}
-        {% else %}
-          {% assign professional_service_limit = professional_service_size %}
-        {% endif %}
-        {% for item in professional_service limit: professional_service_limit %}
-          <tr>
-            <th scope="row" style="width: 20%">{{ item.date | date: '%b %Y' }}</th>
-            <td>
-              {% if item.inline %}
-                {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
-              {% else %}
-                <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-              {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
-      </table>
-    </div>
+    {% comment %} Entries without a `date:` get the build time from Jekyll; show those as plain text above the dated ones {% endcomment %}
+    {% assign dated_items = site.professional_service | where_exp: 'item', 'item.date != site.time' | reverse %}
+    {% assign undated_items = site.professional_service | where_exp: 'item', 'item.date == site.time' %}
+    {% if include.limit and page.professional_service.limit %}
+      {% assign items_limit = page.professional_service.limit %}
+    {% else %}
+      {% assign items_limit = dated_items | size %}
+    {% endif %}
+    <ul class="dated-list">
+      {% for item in undated_items %}
+        <li class="dated-list-undated">
+          <span class="dated-list-text">{{ item.content | remove: '<p>' | remove: '</p>' | strip | emojify }}</span>
+        </li>
+      {% endfor %}
+      {% for item in dated_items limit: items_limit %}
+        <li>
+          <span class="dated-list-date">[{{ item.date | date: '%b %Y' }}]</span>
+          <span class="dated-list-text">
+            {%- if item.inline -%}
+              {{ item.content | remove: '<p>' | remove: '</p>' | strip | emojify }}
+            {%- else -%}
+              <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            {%- endif -%}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
   {% else %}
     <p>No professional service so far...</p>
   {% endif %}
