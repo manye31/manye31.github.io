@@ -1900,11 +1900,12 @@ h2.section-heading {
     font-variant-numeric: tabular-nums;
   }
 
-  // Square covers, edge to edge like a wall of records: at least 5 across (4 on phones), more when there's room
+  // Square covers, edge to edge like a wall of records: at least 5 across (4 on phones), more when there's room.
+  // (Avoid writing "- (" in calc: the production CSS compressor drops the space after the minus and breaks the rule.)
   .discogs-grid {
     --min-cols: 5;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(120px, calc((100% - (var(--min-cols) - 1) * 4px) / var(--min-cols))), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(120px, calc(100% / var(--min-cols) - 4px)), 1fr));
     gap: 4px;
 
     @media (max-width: 575.98px) {
@@ -2584,7 +2585,7 @@ details.hobby {
   .lb-grid {
     --min-cols: 5;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(110px, calc((100% - (var(--min-cols) - 1) * 0.75rem) / var(--min-cols))), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(110px, calc(100% / var(--min-cols) - 0.75rem)), 1fr));
     gap: 1rem 0.75rem;
     list-style: none;
     padding: 0;

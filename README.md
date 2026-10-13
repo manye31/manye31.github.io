@@ -1,3 +1,11 @@
+
+# TODO
+would love to add progress bar with chibi offroad vehicele
+would love to make robot page which shows 1. all robot's i've worked with and 2. the timeline i've worked with them as a fun gantt chart
+improve hobbies page with letterboxd collection stats (or a separate json), hiking photos, games photos/collection
+reduce size of assets for faster load times
+add silly friend/adv photos
+
 # al-folio
 
 <div align="center">
