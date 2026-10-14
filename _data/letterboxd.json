@@ -1,7 +1,33 @@
 {
   "username": "manye31",
-  "updated": "2026-10-13",
+  "updated": "2026-10-14",
   "films": [
+    {
+      "title": "Primetime",
+      "year": "2026",
+      "rating": 4.0,
+      "liked": true,
+      "rewatch": false,
+      "watched": "2026-10-13",
+      "spoilers": false,
+      "review": "Laughed more than I expected in a movie about predators.\n\nGreat cinematography and plot. So many cool grainy or 00s like shots. And Robert Pattinson did a fantastic job. Also loved Skyler. Only knew him from Psych lol. The ending was a bit abrupt for my understanding and I think I missed some of Hansens last lines. I get it was supposed to be rushed tho.",
+      "url": "https://letterboxd.com/manye31/film/primetime-2026/",
+      "poster": "https://a.ltrbxd.com/resized/film-poster/1/2/6/2/0/1/9/1262019-primetime-2026-0-230-0-345-crop.jpg?v=41640d6988",
+      "poster_large": "https://a.ltrbxd.com/resized/film-poster/1/2/6/2/0/1/9/1262019-primetime-2026-0-600-0-900-crop.jpg?v=41640d6988"
+    },
+    {
+      "title": "Deadpool",
+      "year": "2016",
+      "rating": 4.0,
+      "liked": true,
+      "rewatch": false,
+      "watched": "2026-10-12",
+      "spoilers": false,
+      "review": "Bro i forgot how unhinged deadpool is",
+      "url": "https://letterboxd.com/manye31/film/deadpool/",
+      "poster": "https://a.ltrbxd.com/resized/film-poster/2/2/0/5/7/5/220575-deadpool-0-230-0-345-crop.jpg?v=2f726ea9b3",
+      "poster_large": "https://a.ltrbxd.com/resized/film-poster/2/2/0/5/7/5/220575-deadpool-0-600-0-900-crop.jpg?v=2f726ea9b3"
+    },
     {
       "title": "Halloweentown II: Kalabar's Revenge",
       "year": "2001",
