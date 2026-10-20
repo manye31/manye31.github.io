@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "ranges": [
     {
       "key": "short_term",
@@ -16,6 +16,11 @@
           "name": "Bad Bunny",
           "url": "https://open.spotify.com/artist/4q3ewBCX7sLwd24euuV69X",
           "image": "https://i.scdn.co/image/ab6761610000517481f47f44084e0a09b5f0fa13"
+        },
+        {
+          "name": "Kool & The Gang",
+          "url": "https://open.spotify.com/artist/3VNITwohbvU5Wuy5PC6dsI",
+          "image": "https://i.scdn.co/image/ab6761610000517400d9d2a934212583ac11e184"
         },
         {
           "name": "Nine Inch Nails",
@@ -80,14 +85,14 @@
           "image": "https://i.scdn.co/image/ab676161000051749722e16a886767adf1178f92"
         },
         {
-          "name": "Nine Inch Nails",
-          "url": "https://open.spotify.com/artist/0X380XXQSNBYuleKzav5UO",
-          "image": "https://i.scdn.co/image/ab67616100005174752fca27c5b839ea47d5100d"
-        },
-        {
           "name": "Kool & The Gang",
           "url": "https://open.spotify.com/artist/3VNITwohbvU5Wuy5PC6dsI",
           "image": "https://i.scdn.co/image/ab6761610000517400d9d2a934212583ac11e184"
+        },
+        {
+          "name": "Nine Inch Nails",
+          "url": "https://open.spotify.com/artist/0X380XXQSNBYuleKzav5UO",
+          "image": "https://i.scdn.co/image/ab67616100005174752fca27c5b839ea47d5100d"
         },
         {
           "name": "John Williams",
