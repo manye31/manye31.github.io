@@ -1,7 +1,33 @@
 {
   "username": "manye31",
-  "updated": "2026-10-14",
+  "updated": "2026-10-21",
   "films": [
+    {
+      "title": "Halloweentown High",
+      "year": "2004",
+      "rating": 2.5,
+      "liked": true,
+      "rewatch": false,
+      "watched": "2026-10-20",
+      "spoilers": false,
+      "review": "Watched on Tuesday October 20, 2026.",
+      "url": "https://letterboxd.com/manye31/film/halloweentown-high/",
+      "poster": "https://a.ltrbxd.com/resized/film-poster/2/9/0/9/1/29091-halloweentown-high-0-230-0-345-crop.jpg?v=34ae4baaca",
+      "poster_large": "https://a.ltrbxd.com/resized/film-poster/2/9/0/9/1/29091-halloweentown-high-0-600-0-900-crop.jpg?v=34ae4baaca"
+    },
+    {
+      "title": "Spider-Man: Brand New Day",
+      "year": "2026",
+      "rating": 4.5,
+      "liked": true,
+      "rewatch": true,
+      "watched": "2026-10-17",
+      "spoilers": false,
+      "review": "Watched on Saturday October 17, 2026.",
+      "url": "https://letterboxd.com/manye31/film/spider-man-brand-new-day/1/",
+      "poster": "https://a.ltrbxd.com/resized/film-poster/8/7/2/8/7/1/872871-spider-man-brand-new-day-0-230-0-345-crop.jpg?v=ebe6beb4fc",
+      "poster_large": "https://a.ltrbxd.com/resized/film-poster/8/7/2/8/7/1/872871-spider-man-brand-new-day-0-600-0-900-crop.jpg?v=ebe6beb4fc"
+    },
     {
       "title": "Primetime",
       "year": "2026",
