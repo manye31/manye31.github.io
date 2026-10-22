@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updated": "2026-10-20",
+  "updated": "2026-10-22",
   "ranges": [
     {
       "key": "short_term",
@@ -26,6 +26,11 @@
           "name": "Nine Inch Nails",
           "url": "https://open.spotify.com/artist/0X380XXQSNBYuleKzav5UO",
           "image": "https://i.scdn.co/image/ab67616100005174752fca27c5b839ea47d5100d"
+        },
+        {
+          "name": "Supertramp",
+          "url": "https://open.spotify.com/artist/3JsMj0DEzyWc0VDlHuy9Bx",
+          "image": "https://i.scdn.co/image/b0183fa5aa1cc1f8972bf49e2fc0ecce6bdb184d"
         },
         {
           "name": "Tyler, The Creator",
