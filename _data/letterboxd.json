@@ -1,7 +1,33 @@
 {
   "username": "manye31",
-  "updated": "2026-10-21",
+  "updated": "2026-10-25",
   "films": [
+    {
+      "title": "You Can See Everything",
+      "year": "2026",
+      "rating": 5.0,
+      "liked": true,
+      "rewatch": false,
+      "watched": "2026-10-24",
+      "spoilers": false,
+      "review": "You can see everything. More like Did I see anything? The whole documentary makes me question reality for EVERY single one of these people bro. Crazy endi--actually crazy last 2 hours.\n\nAlso,Nathan: Asks a simple questionElizabeth: ... Well I haven't really ... Hmm I'm not sure ... Yeah I don't know\n\nlike bitch wtf is going on inside your head??? Both of you. It's actually mental",
+      "url": "https://letterboxd.com/manye31/film/you-can-see-everything/",
+      "poster": "https://a.ltrbxd.com/resized/film-poster/1/6/2/9/4/4/3/1629443-you-can-see-everything-0-230-0-345-crop.jpg?v=84f6724d74",
+      "poster_large": "https://a.ltrbxd.com/resized/film-poster/1/6/2/9/4/4/3/1629443-you-can-see-everything-0-600-0-900-crop.jpg?v=84f6724d74"
+    },
+    {
+      "title": "The Inventor: Out for Blood in Silicon Valley",
+      "year": "2019",
+      "rating": 3.5,
+      "liked": true,
+      "rewatch": false,
+      "watched": "2026-10-22",
+      "spoilers": false,
+      "review": "I enjoyed it. Nothing crazy. But informative",
+      "url": "https://letterboxd.com/manye31/film/the-inventor-out-for-blood-in-silicon-valley/",
+      "poster": "https://a.ltrbxd.com/resized/film-poster/4/9/4/7/8/5/494785-the-inventor-out-for-blood-in-silicon-valley-0-230-0-345-crop.jpg?v=e076e16cf2",
+      "poster_large": "https://a.ltrbxd.com/resized/film-poster/4/9/4/7/8/5/494785-the-inventor-out-for-blood-in-silicon-valley-0-600-0-900-crop.jpg?v=e076e16cf2"
+    },
     {
       "title": "Halloweentown High",
       "year": "2004",
