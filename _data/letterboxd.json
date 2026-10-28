@@ -1,7 +1,20 @@
 {
   "username": "manye31",
-  "updated": "2026-10-25",
+  "updated": "2026-10-28",
   "films": [
+    {
+      "title": "Return to Halloweentown",
+      "year": "2006",
+      "rating": 1.0,
+      "liked": false,
+      "rewatch": false,
+      "watched": "2026-10-27",
+      "spoilers": false,
+      "review": "ew",
+      "url": "https://letterboxd.com/manye31/film/return-to-halloweentown/",
+      "poster": "https://a.ltrbxd.com/resized/film-poster/2/9/2/7/2/29272-return-to-halloweentown-0-230-0-345-crop.jpg?v=b51ea57a33",
+      "poster_large": "https://a.ltrbxd.com/resized/film-poster/2/9/2/7/2/29272-return-to-halloweentown-0-600-0-900-crop.jpg?v=b51ea57a33"
+    },
     {
       "title": "You Can See Everything",
       "year": "2026",
