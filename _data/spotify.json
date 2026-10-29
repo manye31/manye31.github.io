@@ -1,12 +1,17 @@
 {
   "sample": false,
-  "updated": "2026-10-28",
+  "updated": "2026-10-29",
   "ranges": [
     {
       "key": "short_term",
       "label": "Last month",
       "genres": [],
       "artists": [
+        {
+          "name": "Parliament",
+          "url": "https://open.spotify.com/artist/5SMVzTJyKFJ7TUb46DglcH",
+          "image": "https://i.scdn.co/image/ab676161000051746d32e1e62d928ac057284b4c"
+        },
         {
           "name": "Bad Bunny",
           "url": "https://open.spotify.com/artist/4q3ewBCX7sLwd24euuV69X",
@@ -16,11 +21,6 @@
           "name": "Kendrick Lamar",
           "url": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
           "image": "https://i.scdn.co/image/ab6761610000517439ba6dcd4355c03de0b50918"
-        },
-        {
-          "name": "Parliament",
-          "url": "https://open.spotify.com/artist/5SMVzTJyKFJ7TUb46DglcH",
-          "image": "https://i.scdn.co/image/ab676161000051746d32e1e62d928ac057284b4c"
         },
         {
           "name": "Kool & The Gang",
@@ -100,6 +100,11 @@
           "image": "https://i.scdn.co/image/ab6761610000517400d9d2a934212583ac11e184"
         },
         {
+          "name": "Parliament",
+          "url": "https://open.spotify.com/artist/5SMVzTJyKFJ7TUb46DglcH",
+          "image": "https://i.scdn.co/image/ab676161000051746d32e1e62d928ac057284b4c"
+        },
+        {
           "name": "John Williams",
           "url": "https://open.spotify.com/artist/3dRfiJ2650SZu6GbydcHNb",
           "image": "https://i.scdn.co/image/ab6761610000517486b13e4d2e65ebf694384ef4"
@@ -108,11 +113,6 @@
           "name": "Supertramp",
           "url": "https://open.spotify.com/artist/3JsMj0DEzyWc0VDlHuy9Bx",
           "image": "https://i.scdn.co/image/b0183fa5aa1cc1f8972bf49e2fc0ecce6bdb184d"
-        },
-        {
-          "name": "Justin Hurwitz",
-          "url": "https://open.spotify.com/artist/2snm3HmsnDUDxbIChdl2Oj",
-          "image": "https://i.scdn.co/image/ab67616100005174152668866cc33ae3fe2f4ede"
         }
       ]
     },
