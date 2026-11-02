@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updated": "2026-10-29",
+  "updated": "2026-11-02",
   "ranges": [
     {
       "key": "short_term",
@@ -43,6 +43,11 @@
           "image": "https://i.scdn.co/image/ab67616100005174df2728294ff77dd11eeb18fb"
         },
         {
+          "name": "CAKE",
+          "url": "https://open.spotify.com/artist/6A43Djmhbe9100UwnI7epV",
+          "image": "https://i.scdn.co/image/ab67616100005174b8bf71301acec36f0256c0f8"
+        },
+        {
           "name": "Gene Kelly",
           "url": "https://open.spotify.com/artist/1mhlGWeiNrWnhJJc2EufYk",
           "image": "https://i.scdn.co/image/ab67616100005174bf1955765947fa825e5969cc"
@@ -51,11 +56,6 @@
           "name": "War",
           "url": "https://open.spotify.com/artist/3ICyfoySNDZqtBVmaBT84I",
           "image": "https://i.scdn.co/image/ab6761610000517416ec6c21fa9d28f9cd95aff2"
-        },
-        {
-          "name": "Meryl Streep",
-          "url": "https://open.spotify.com/artist/2HB65P72dFRiOKvbLLcil2",
-          "image": "https://i.scdn.co/image/48037fd8e79959f2be362fe6db0a95387b6cf3f0"
         }
       ]
     },
