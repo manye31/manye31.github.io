@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updated": "2026-11-04",
+  "updated": "2026-11-05",
   "ranges": [
     {
       "key": "short_term",
@@ -38,14 +38,14 @@
           "image": "https://i.scdn.co/image/b0183fa5aa1cc1f8972bf49e2fc0ecce6bdb184d"
         },
         {
-          "name": "Tyler, The Creator",
-          "url": "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF",
-          "image": "https://i.scdn.co/image/ab67616100005174df2728294ff77dd11eeb18fb"
-        },
-        {
           "name": "CAKE",
           "url": "https://open.spotify.com/artist/6A43Djmhbe9100UwnI7epV",
           "image": "https://i.scdn.co/image/ab67616100005174b8bf71301acec36f0256c0f8"
+        },
+        {
+          "name": "Tyler, The Creator",
+          "url": "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF",
+          "image": "https://i.scdn.co/image/ab67616100005174df2728294ff77dd11eeb18fb"
         },
         {
           "name": "Gene Kelly",
