@@ -56,4 +56,38 @@ $(document).ready(function () {
   $('[data-toggle="popover"]').popover({
     trigger: "hover",
   });
+
+  // Publication Video buttons: play YouTube / Google Drive links in an in-page lightbox instead of leaving the site.
+  // Links from any other host just open normally.
+  var videoEmbedUrl = function (url) {
+    var m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/))([\w-]{11})/);
+    if (m) return "https://www.youtube-nocookie.com/embed/" + m[1] + "?autoplay=1&rel=0";
+    m = url.match(/drive\.google\.com\/file\/(?:u\/\d+\/)?d\/([\w-]+)/);
+    if (m) return "https://drive.google.com/file/d/" + m[1] + "/preview";
+    return null;
+  };
+  var lightbox = document.getElementById("video-lightbox");
+  if (lightbox) {
+    var frame = lightbox.querySelector("iframe");
+    var closeLightbox = function () {
+      lightbox.hidden = true;
+      frame.src = ""; // stops playback
+      document.body.style.overflow = "";
+    };
+    $("a.video-lightbox-link").click(function (e) {
+      var src = videoEmbedUrl(this.href);
+      if (!src) return;
+      e.preventDefault();
+      frame.src = src;
+      lightbox.hidden = false;
+      document.body.style.overflow = "hidden";
+    });
+    lightbox.querySelector(".video-lightbox-close").addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
+    });
+  }
 });
