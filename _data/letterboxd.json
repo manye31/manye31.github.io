@@ -1,7 +1,20 @@
 {
   "username": "manye31",
-  "updated": "2026-10-31",
+  "updated": "2026-11-23",
   "films": [
+    {
+      "title": "The Hunger Games: Sunrise on the Reaping",
+      "year": "2026",
+      "rating": 3.5,
+      "liked": true,
+      "rewatch": false,
+      "watched": "2026-11-21",
+      "spoilers": false,
+      "review": "Way too fast paced. Some parts I loved, others I hated. It got better the longer it went. The set design and vfx were pretty good though",
+      "url": "https://letterboxd.com/manye31/film/the-hunger-games-sunrise-on-the-reaping/",
+      "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/8/2/6/9/2/1182692-the-hunger-games-sunrise-on-the-reaping-0-230-0-345-crop.jpg?v=91001efc76",
+      "poster_large": "https://a.ltrbxd.com/resized/film-poster/1/1/8/2/6/9/2/1182692-the-hunger-games-sunrise-on-the-reaping-0-600-0-900-crop.jpg?v=91001efc76"
+    },
     {
       "title": "Obsession",
       "year": "2025",
