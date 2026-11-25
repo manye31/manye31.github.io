@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "ranges": [
     {
       "key": "short_term",
@@ -21,6 +21,16 @@
           "name": "CAKE",
           "url": "https://open.spotify.com/artist/6A43Djmhbe9100UwnI7epV",
           "image": "https://i.scdn.co/image/ab67616100005174b8bf71301acec36f0256c0f8"
+        },
+        {
+          "name": "Tyler, The Creator",
+          "url": "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF",
+          "image": "https://i.scdn.co/image/ab67616100005174df2728294ff77dd11eeb18fb"
+        },
+        {
+          "name": "Kendrick Lamar",
+          "url": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
+          "image": "https://i.scdn.co/image/ab6761610000517439ba6dcd4355c03de0b50918"
         },
         {
           "name": "Clifford Brown",
@@ -46,11 +56,6 @@
           "name": "Count Basie",
           "url": "https://open.spotify.com/artist/2jFZlvIea42ZvcCw4OeEdA",
           "image": "https://i.scdn.co/image/cb1e9ef704a78904fce4a4b0c5e7f59d159d9015"
-        },
-        {
-          "name": "McCoy Tyner Trio",
-          "url": "https://open.spotify.com/artist/1EpLpC0tbCla8knfhET78p",
-          "image": "https://i.scdn.co/image/ab67616d00001e02121073a0536b019b9d6bc458"
         }
       ]
     },
