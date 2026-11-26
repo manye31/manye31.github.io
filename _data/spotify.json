@@ -1,6 +1,6 @@
 {
   "sample": false,
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "ranges": [
     {
       "key": "short_term",
@@ -11,11 +11,6 @@
           "name": "The 8-Bit Big Band",
           "url": "https://open.spotify.com/artist/5d1sgs6DwqUcHqQsvwStt2",
           "image": "https://i.scdn.co/image/ab676161000051746f65b0a3af9b1de3b17f7ffb"
-        },
-        {
-          "name": "Parliament",
-          "url": "https://open.spotify.com/artist/5SMVzTJyKFJ7TUb46DglcH",
-          "image": "https://i.scdn.co/image/ab676161000051746d32e1e62d928ac057284b4c"
         },
         {
           "name": "CAKE",
@@ -31,6 +26,11 @@
           "name": "Kendrick Lamar",
           "url": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
           "image": "https://i.scdn.co/image/ab6761610000517439ba6dcd4355c03de0b50918"
+        },
+        {
+          "name": "Parliament",
+          "url": "https://open.spotify.com/artist/5SMVzTJyKFJ7TUb46DglcH",
+          "image": "https://i.scdn.co/image/ab676161000051746d32e1e62d928ac057284b4c"
         },
         {
           "name": "Clifford Brown",
@@ -132,14 +132,14 @@
           "image": "https://i.scdn.co/image/37c7875911b1d8195b05d40061a86bd01908a0d9"
         },
         {
-          "name": "Kendrick Lamar",
-          "url": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
-          "image": "https://i.scdn.co/image/ab6761610000517439ba6dcd4355c03de0b50918"
-        },
-        {
           "name": "Tyler, The Creator",
           "url": "https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF",
           "image": "https://i.scdn.co/image/ab67616100005174df2728294ff77dd11eeb18fb"
+        },
+        {
+          "name": "Kendrick Lamar",
+          "url": "https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg",
+          "image": "https://i.scdn.co/image/ab6761610000517439ba6dcd4355c03de0b50918"
         },
         {
           "name": "Supertramp",
